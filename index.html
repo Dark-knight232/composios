@@ -719,22 +719,36 @@ function renderPatterns() {
   `).join('');
 }
 
+function flattenDist(obj){
+  if(!obj || typeof obj !== 'object') return null;
+  const src = (obj.counts && typeof obj.counts === 'object') ? obj.counts : obj;
+  const out = {};
+  Object.keys(src).forEach(k => { if(typeof src[k] === 'number') out[k] = src[k]; });
+  return Object.keys(out).length ? out : null;
+}
+
+function pickDist(...cands){
+  for(const c of cands){ const f = flattenDist(c); if(f) return f; }
+  return {};
+}
+
 function renderBuildability() {
-  const bd = PATTERNS_DATA.buildability_breakdown || FALLBACK_DATA.patterns.buildability_breakdown;
+  const bd = pickDist(PATTERNS_DATA.buildability_verdict_distribution, PATTERNS_DATA.buildability_breakdown, FALLBACK_DATA.patterns.buildability_breakdown);
   const data = [bd.Buildable_Today, bd.Buildable_With_Workaround, bd.Blocked];
   const labels = ['Buildable Today', 'Buildable With Workaround', 'Blocked'];
+  const total = data.reduce((a,b)=>a+(b||0),0) || 100;
   drawPieChart(document.getElementById('buildabilityChart'), data, labels, bd.Buildable_Today);
   const legend = document.getElementById('buildabilityLegend');
   legend.innerHTML = data.map((v,i) => `
-    <span class="legend-item"><span class="legend-swatch" style="background:${CHART_COLORS[i]}"></span>${labels[i]}: ${v} (${Math.round(v/100*100)}%)</span>
+    <span class="legend-item"><span class="legend-swatch" style="background:${CHART_COLORS[i]}"></span>${labels[i]}: ${v} (${Math.round(v/total*100)}%)</span>
   `).join('');
 }
 
 function renderAccess() {
-  const am = PATTERNS_DATA.access_model_distribution || FALLBACK_DATA.patterns.access_model_distribution;
-  const data = Object.values(am);
+  const am = pickDist(PATTERNS_DATA.access_model_distribution, FALLBACK_DATA.patterns.access_model_distribution);
   const labels = Object.keys(am);
-  const maxVal = Math.max(...data);
+  const data = Object.values(am);
+  const maxVal = Math.max(...data, 1);
   drawBarChart(document.getElementById('accessChart'), data, labels, maxVal);
   const legend = document.getElementById('accessLegend');
   legend.innerHTML = data.map((v,i) => `
@@ -764,10 +778,10 @@ function renderCategoryMatrix() {
 }
 
 function renderAuthChart() {
-  const ad = PATTERNS_DATA.auth_distribution || FALLBACK_DATA.patterns.auth_distribution;
-  const data = Object.values(ad);
+  const ad = pickDist(PATTERNS_DATA.auth_methods_distribution, PATTERNS_DATA.auth_distribution, FALLBACK_DATA.patterns.auth_distribution);
   const labels = Object.keys(ad);
-  const maxVal = Math.max(...data);
+  const data = Object.values(ad);
+  const maxVal = Math.max(...data, 1);
   drawBarChart(document.getElementById('authChart'), data, labels, maxVal);
   const legend = document.getElementById('authLegend');
   legend.innerHTML = data.map((v,i) => `
@@ -776,10 +790,10 @@ function renderAuthChart() {
 }
 
 function renderApiChart() {
-  const asd = PATTERNS_DATA.api_surface_distribution || FALLBACK_DATA.patterns.api_surface_distribution;
-  const data = Object.values(asd);
+  const asd = pickDist(PATTERNS_DATA.api_surface_distribution, FALLBACK_DATA.patterns.api_surface_distribution);
   const labels = Object.keys(asd);
-  const maxVal = Math.max(...data);
+  const data = Object.values(asd);
+  const maxVal = Math.max(...data, 1);
   drawBarChart(document.getElementById('apiChart'), data, labels, maxVal);
   const legend = document.getElementById('apiLegend');
   legend.innerHTML = data.map((v,i) => `
@@ -788,13 +802,14 @@ function renderApiChart() {
 }
 
 function renderMcpChart() {
-  const md = PATTERNS_DATA.mcp_distribution || FALLBACK_DATA.patterns.mcp_distribution;
+  const md = pickDist(PATTERNS_DATA.existing_mcp_distribution, PATTERNS_DATA.mcp_distribution, FALLBACK_DATA.patterns.mcp_distribution);
   const data = [md.Official_MCP || 0, md.Community_MCP || 0, md.None_Found || 0];
   const labels = ['Official MCP', 'Community MCP', 'None Found'];
+  const total = data.reduce((a,b)=>a+(b||0),0) || 100;
   drawPieChart(document.getElementById('mcpChart'), data, labels, md.Official_MCP || 0);
   const legend = document.getElementById('mcpLegend');
   legend.innerHTML = data.map((v,i) => `
-    <span class="legend-item"><span class="legend-swatch" style="background:${CHART_COLORS[i]}"></span>${labels[i]}: ${v} (${Math.round(v/100*100)}%)</span>
+    <span class="legend-item"><span class="legend-swatch" style="background:${CHART_COLORS[i]}"></span>${labels[i]}: ${v} (${Math.round(v/total*100)}%)</span>
   `).join('');
 }
 
