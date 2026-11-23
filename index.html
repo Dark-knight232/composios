@@ -409,16 +409,16 @@ const FALLBACK_DATA = {
   apps: [],
   patterns: {
     headline_takeaways: [
-      "58% (58/100) apps are Buildable_Today; 12% (12/100) are Blocked by sales/partner gating",
-      "OAuth2 dominates at 68% of auth methods; API keys remain common for simpler integrations",
-      "31% have Official MCPs; Developer/Infra & Productivity categories lead with 80%+ official coverage",
-      "Self-serve categories (Developer, Productivity, Communications) are fast wins; Finance/Marketing/CRM require partnership outreach"
+      "68% (68/100) apps are Buildable_Today; 9% (9/100) are Blocked by sales/partner gating",
+      "OAuth2 dominates at 71% of auth methods; API keys remain common for simpler integrations",
+      "43% have Official MCPs; 25% rely on community MCPs; the rest (32) need one built from scratch",
+      "Self-serve categories (Productivity & Docs, E-Commerce & ERP, DevTools & Infra) are fast wins; Finance/Marketing/CRM require partnership outreach"
     ],
-    auth_distribution: {"OAuth2":68,"API_Key":52,"Bearer_Token":31,"Basic_Auth":6,"Custom_Header":3,"JWT_Service_Account":4,"None_Public":2,"Unknown":1},
-    api_surface_distribution: {"REST":94,"GraphQL":28,"Webhooks":58,"SDK_Only":9,"gRPC":6,"None":2},
-    mcp_distribution: {"Official_MCP":31,"Community_MCP":18,"None_Found":51},
-    access_model_distribution: {"Self_Serve_Free":38,"Self_Serve_Paid_Or_Trial":35,"Partner_Or_Sales_Gated":18,"Admin_Approval_Required":5,"No_Public_API":4},
-    buildability_breakdown: {"Buildable_Today":58,"Buildable_With_Workaround":30,"Blocked":12},
+    auth_distribution: {"OAuth2":71,"API_Key":65,"Bearer_Token":50,"Basic_Auth":8,"None_Public":2,"JWT_Service_Account":2,"Unknown":1,"Custom_Header":1},
+    api_surface_distribution: {"REST":95,"Webhooks":62,"GraphQL":10,"SDK_Only":6,"gRPC":3,"None":3},
+    mcp_distribution: {"Official_MCP":43,"Community_MCP":25,"None_Found":32},
+    access_model_distribution: {"Self_Serve_Free":47,"Self_Serve_Paid_Or_Trial":42,"Partner_Or_Sales_Gated":8,"Admin_Approval_Required":3},
+    buildability_breakdown: {"Buildable_Today":68,"Buildable_With_Workaround":23,"Blocked":9},
     category_matrix: [],
     self_serve_vs_gated_matrix: [
       {"category":"CRM & Sales","total":11,"Self_Serve_Free":4,"Self_Serve_Paid_Or_Trial":5,"Admin_Approval_Required":1,"Partner_Or_Sales_Gated":1,"Buildable_Today":6,"Buildable_With_Workaround":4,"Blocked":1},
@@ -441,14 +441,18 @@ const FALLBACK_DATA = {
       {"category":"Other","total":1,"Self_Serve_Free":0,"Self_Serve_Paid_Or_Trial":1,"Admin_Approval_Required":0,"Partner_Or_Sales_Gated":0,"Buildable_Today":1,"Buildable_With_Workaround":0,"Blocked":0}
     ],
     top_blockers: [
-      {"blocker":"Partner review and contract required","count":8},
-      {"blocker":"Sales-gated; no public API access","count":5},
-      {"blocker":"Meta approval; strict policy review","count":3},
-      {"blocker":"Enterprise sales only; no self-serve","count":4},
-      {"blocker":"Production requires partnership","count":3},
-      {"blocker":"No public API; enterprise only","count":3},
-      {"blocker":"Lengthy approval; strict compliance","count":2},
-      {"blocker":"Partner certification; no sandbox access","count":2}
+      {"blocker":"Partner review and contract required","count":1},
+      {"blocker":"API requires paid subscription","count":1},
+      {"blocker":"Limited API surface; older platform","count":1},
+      {"blocker":"OAuth application registration requires contacting copper","count":1},
+      {"blocker":"Requires admin role for API key generation","count":1},
+      {"blocker":"Narrow API surface; newer platform","count":1},
+      {"blocker":"API key only on some plans","count":1},
+      {"blocker":"Complex auth; Chinese data residency concerns","count":1},
+      {"blocker":"Meta Tech Provider approval required for WhatsApp Business API access","count":1},
+      {"blocker":"Paid only; voice-focused API","count":1},
+      {"blocker":"Developer token approval needed","count":1},
+      {"blocker":"App review for marketing permissions","count":1}
     ],
     accuracy_lift: {
       pass1_accuracy: 0.72,
