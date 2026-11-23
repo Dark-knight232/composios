@@ -419,7 +419,27 @@ const FALLBACK_DATA = {
     mcp_distribution: {"Official_MCP":31,"Community_MCP":18,"None_Found":51},
     access_model_distribution: {"Self_Serve_Free":38,"Self_Serve_Paid_Or_Trial":35,"Partner_Or_Sales_Gated":18,"Admin_Approval_Required":5,"No_Public_API":4},
     buildability_breakdown: {"Buildable_Today":58,"Buildable_With_Workaround":30,"Blocked":12},
-    category_matrix: {},
+    category_matrix: [],
+    self_serve_vs_gated_matrix: [
+      {"category":"CRM & Sales","total":11,"Self_Serve_Free":4,"Self_Serve_Paid_Or_Trial":5,"Admin_Approval_Required":1,"Partner_Or_Sales_Gated":1,"Buildable_Today":6,"Buildable_With_Workaround":4,"Blocked":1},
+      {"category":"Support & Ticketing","total":4,"Self_Serve_Free":0,"Self_Serve_Paid_Or_Trial":2,"Admin_Approval_Required":1,"Partner_Or_Sales_Gated":1,"Buildable_Today":4,"Buildable_With_Workaround":0,"Blocked":0},
+      {"category":"Support & Helpdesk","total":6,"Self_Serve_Free":1,"Self_Serve_Paid_Or_Trial":5,"Admin_Approval_Required":0,"Partner_Or_Sales_Gated":0,"Buildable_Today":4,"Buildable_With_Workaround":2,"Blocked":0},
+      {"category":"Communications & Messaging","total":6,"Self_Serve_Free":4,"Self_Serve_Paid_Or_Trial":2,"Admin_Approval_Required":0,"Partner_Or_Sales_Gated":0,"Buildable_Today":4,"Buildable_With_Workaround":2,"Blocked":0},
+      {"category":"Productivity & Docs","total":7,"Self_Serve_Free":7,"Self_Serve_Paid_Or_Trial":0,"Admin_Approval_Required":0,"Partner_Or_Sales_Gated":0,"Buildable_Today":7,"Buildable_With_Workaround":0,"Blocked":0},
+      {"category":"Marketing & Social","total":5,"Self_Serve_Free":3,"Self_Serve_Paid_Or_Trial":1,"Admin_Approval_Required":1,"Partner_Or_Sales_Gated":0,"Buildable_Today":2,"Buildable_With_Workaround":2,"Blocked":1},
+      {"category":"DevTools & Infra","total":6,"Self_Serve_Free":2,"Self_Serve_Paid_Or_Trial":4,"Admin_Approval_Required":0,"Partner_Or_Sales_Gated":0,"Buildable_Today":6,"Buildable_With_Workaround":0,"Blocked":0},
+      {"category":"Marketing, Ads, Email & Social","total":8,"Self_Serve_Free":5,"Self_Serve_Paid_Or_Trial":1,"Admin_Approval_Required":0,"Partner_Or_Sales_Gated":2,"Buildable_Today":3,"Buildable_With_Workaround":3,"Blocked":2},
+      {"category":"Ecommerce","total":5,"Self_Serve_Free":2,"Self_Serve_Paid_Or_Trial":2,"Admin_Approval_Required":0,"Partner_Or_Sales_Gated":1,"Buildable_Today":2,"Buildable_With_Workaround":2,"Blocked":1},
+      {"category":"E-Commerce & ERP","total":4,"Self_Serve_Free":4,"Self_Serve_Paid_Or_Trial":0,"Admin_Approval_Required":0,"Partner_Or_Sales_Gated":0,"Buildable_Today":4,"Buildable_With_Workaround":0,"Blocked":0},
+      {"category":"Data, SEO & Scraping","total":6,"Self_Serve_Free":2,"Self_Serve_Paid_Or_Trial":4,"Admin_Approval_Required":0,"Partner_Or_Sales_Gated":0,"Buildable_Today":4,"Buildable_With_Workaround":2,"Blocked":0},
+      {"category":"Data & Analytics","total":4,"Self_Serve_Free":1,"Self_Serve_Paid_Or_Trial":3,"Admin_Approval_Required":0,"Partner_Or_Sales_Gated":0,"Buildable_Today":4,"Buildable_With_Workaround":0,"Blocked":0},
+      {"category":"Developer, Infra & Data platforms","total":6,"Self_Serve_Free":4,"Self_Serve_Paid_Or_Trial":2,"Admin_Approval_Required":0,"Partner_Or_Sales_Gated":0,"Buildable_Today":4,"Buildable_With_Workaround":2,"Blocked":0},
+      {"category":"Productivity & Project Management","total":6,"Self_Serve_Free":3,"Self_Serve_Paid_Or_Trial":3,"Admin_Approval_Required":0,"Partner_Or_Sales_Gated":0,"Buildable_Today":5,"Buildable_With_Workaround":1,"Blocked":0},
+      {"category":"Finance & Fintech","total":6,"Self_Serve_Free":2,"Self_Serve_Paid_Or_Trial":2,"Admin_Approval_Required":0,"Partner_Or_Sales_Gated":2,"Buildable_Today":2,"Buildable_With_Workaround":2,"Blocked":2},
+      {"category":"Finance & Payments","total":4,"Self_Serve_Free":1,"Self_Serve_Paid_Or_Trial":3,"Admin_Approval_Required":0,"Partner_Or_Sales_Gated":0,"Buildable_Today":3,"Buildable_With_Workaround":0,"Blocked":1},
+      {"category":"AI, Research & Media-native","total":5,"Self_Serve_Free":2,"Self_Serve_Paid_Or_Trial":2,"Admin_Approval_Required":0,"Partner_Or_Sales_Gated":1,"Buildable_Today":3,"Buildable_With_Workaround":1,"Blocked":1},
+      {"category":"Other","total":1,"Self_Serve_Free":0,"Self_Serve_Paid_Or_Trial":1,"Admin_Approval_Required":0,"Partner_Or_Sales_Gated":0,"Buildable_Today":1,"Buildable_With_Workaround":0,"Blocked":0}
+    ],
     top_blockers: [
       {"blocker":"Partner review and contract required","count":8},
       {"blocker":"Sales-gated; no public API access","count":5},
@@ -719,20 +739,21 @@ function renderAccess() {
 }
 
 function renderCategoryMatrix() {
-  const cm = PATTERNS_DATA.category_matrix || {};
+  const mm = PATTERNS_DATA.self_serve_vs_gated_matrix || [];
   const tbody = document.querySelector('#categoryMatrix tbody');
   const categories = [...new Set(APP_DATA.map(a => a.category))];
   tbody.innerHTML = categories.map(cat => {
-    const m = cm[cat] || {total:10,self_serve:7,gated:3,buildable_today:6,buildable_workaround:2,blocked:2};
+    const m = mm.find(x => x.category === cat) || {total:0,Self_Serve_Free:0,Partner_Or_Sales_Gated:0,Admin_Approval_Required:0,Buildable_Today:0,Buildable_With_Workaround:0,Blocked:0};
+    const gated = m.Admin_Approval_Required + m.Partner_Or_Sales_Gated;
     return `
       <tr>
         <td><strong>${cat}</strong></td>
         <td>${m.total}</td>
-        <td><span class="cell-bar" style="width:${Math.round(m.self_serve/m.total*100)}%;background:var(--accent)"></span><span class="pct">${m.self_serve}/${m.total} (${Math.round(m.self_serve/m.total*100)}%)</span></td>
-        <td><span class="cell-bar" style="width:${Math.round(m.gated/m.total*100)}%;background:var(--err)"></span><span class="pct">${m.gated}/${m.total} (${Math.round(m.gated/m.total*100)}%)</span></td>
-        <td><span class="cell-bar" style="width:${Math.round(m.buildable_today/m.total*100)}%;background:var(--accent)"></span>${m.buildable_today}</td>
-        <td><span class="cell-bar" style="width:${Math.round(m.buildable_workaround/m.total*100)}%;background:var(--warn)"></span>${m.buildable_workaround}</td>
-        <td><span class="cell-bar" style="width:${Math.round(m.blocked/m.total*100)}%;background:var(--err)"></span>${m.blocked}</td>
+        <td><span class="cell-bar" style="width:${m.total?Math.round(m.Self_Serve_Free/m.total*100):0}%;background:var(--accent)"></span><span class="pct">${m.Self_Serve_Free}/${m.total} (${m.total?Math.round(m.Self_Serve_Free/m.total*100):0}%)</span></td>
+        <td><span class="cell-bar" style="width:${m.total?Math.round(gated/m.total*100):0}%;background:var(--err)"></span><span class="pct">${gated}/${m.total} (${m.total?Math.round(gated/m.total*100):0}%)</span></td>
+        <td><span class="cell-bar" style="width:${m.total?Math.round(m.Buildable_Today/m.total*100):0}%;background:var(--accent)"></span>${m.Buildable_Today}</td>
+        <td><span class="cell-bar" style="width:${m.total?Math.round(m.Buildable_With_Workaround/m.total*100):0}%;background:var(--warn)"></span>${m.Buildable_With_Workaround}</td>
+        <td><span class="cell-bar" style="width:${m.total?Math.round(m.Blocked/m.total*100):0}%;background:var(--err)"></span>${m.Blocked}</td>
       </tr>
     `;
   }).join('');
