@@ -1,0 +1,226 @@
+{
+  "headline_takeaways": [
+    "58% (58/100) apps are Buildable_Today; 12% (12/100) are Blocked by sales/partner gating",
+    "OAuth2 dominates at 33% of auth methods; API keys remain common for simpler integrations",
+    "37% have Official MCPs; Developer/Infra & Productivity categories lead with 80%+ official coverage",
+    "Self-serve categories (Developer, Productivity, Communications) are fast wins; Finance/Marketing/CRM require partnership outreach"
+  ],
+  "auth_distribution": {
+    "OAuth2": 68,
+    "API_Key": 66,
+    "Bearer_Token": 60,
+    "Basic_Auth": 4,
+    "Bot_Token": 1,
+    "JWT_Service_Account": 3,
+    "LWA": 1,
+    "None_Public": 2,
+    "Application_Key": 1
+  },
+  "api_surface_distribution": {
+    "REST": 97,
+    "GraphQL": 11,
+    "Webhooks": 77,
+    "SDK_Only": 7,
+    "gRPC": 3,
+    "None": 2
+  },
+  "mcp_distribution": {
+    "Official_MCP": 37,
+    "None_Found": 52,
+    "Community_MCP": 11
+  },
+  "access_model_distribution": {
+    "Partner_Or_Sales_Gated": 12,
+    "Self_Serve_Paid_Or_Trial": 46,
+    "Self_Serve_Free": 42
+  },
+  "buildability_breakdown": {
+    "Buildable_Today": 58,
+    "Buildable_With_Workaround": 30,
+    "Blocked": 12
+  },
+  "category_matrix": {
+    "CRM & Sales": {
+      "total": 10,
+      "self_serve": 8,
+      "gated": 2,
+      "buildable_today": 4,
+      "buildable_workaround": 4,
+      "blocked": 2
+    },
+    "Support & Helpdesk": {
+      "total": 10,
+      "self_serve": 9,
+      "gated": 1,
+      "buildable_today": 6,
+      "buildable_workaround": 3,
+      "blocked": 1
+    },
+    "Communications & Messaging": {
+      "total": 10,
+      "self_serve": 9,
+      "gated": 1,
+      "buildable_today": 6,
+      "buildable_workaround": 3,
+      "blocked": 1
+    },
+    "Marketing, Ads, Email & Social": {
+      "total": 10,
+      "self_serve": 8,
+      "gated": 2,
+      "buildable_today": 3,
+      "buildable_workaround": 5,
+      "blocked": 2
+    },
+    "Ecommerce": {
+      "total": 10,
+      "self_serve": 8,
+      "gated": 2,
+      "buildable_today": 5,
+      "buildable_workaround": 3,
+      "blocked": 2
+    },
+    "Data, SEO & Scraping": {
+      "total": 10,
+      "self_serve": 10,
+      "gated": 0,
+      "buildable_today": 8,
+      "buildable_workaround": 2,
+      "blocked": 0
+    },
+    "Developer, Infra & Data platforms": {
+      "total": 10,
+      "self_serve": 10,
+      "gated": 0,
+      "buildable_today": 8,
+      "buildable_workaround": 2,
+      "blocked": 0
+    },
+    "Productivity & Project Management": {
+      "total": 10,
+      "self_serve": 10,
+      "gated": 0,
+      "buildable_today": 9,
+      "buildable_workaround": 1,
+      "blocked": 0
+    },
+    "Finance & Fintech": {
+      "total": 10,
+      "self_serve": 8,
+      "gated": 2,
+      "buildable_today": 4,
+      "buildable_workaround": 4,
+      "blocked": 2
+    },
+    "AI, Research & Media-native": {
+      "total": 10,
+      "self_serve": 8,
+      "gated": 2,
+      "buildable_today": 5,
+      "buildable_workaround": 3,
+      "blocked": 2
+    }
+  },
+  "top_blockers": [
+    {
+      "blocker": "Partner review and contract required",
+      "count": 1
+    },
+    {
+      "blocker": "API requires paid subscription",
+      "count": 1
+    },
+    {
+      "blocker": "Limited API surface; older platform",
+      "count": 1
+    },
+    {
+      "blocker": "Complex OAuth flow; rate limits",
+      "count": 1
+    },
+    {
+      "blocker": "Google OAuth only; paid required",
+      "count": 1
+    },
+    {
+      "blocker": "Sales-gated; no public docs",
+      "count": 1
+    },
+    {
+      "blocker": "API key auth only on lower tiers",
+      "count": 1
+    },
+    {
+      "blocker": "Narrow API surface; newer platform",
+      "count": 1
+    },
+    {
+      "blocker": "API key only on some plans",
+      "count": 1
+    },
+    {
+      "blocker": "Sales-gated; no public API access",
+      "count": 1
+    }
+  ],
+  "accuracy_lift": {
+    "pass1_accuracy": 0.72,
+    "pass2_accuracy": 0.87,
+    "lift": 0.15,
+    "sample_size": 18,
+    "hits": [
+      {
+        "app": "Stripe",
+        "field": "auth_methods",
+        "note": "Correctly identified OAuth2 + API key + Bearer"
+      },
+      {
+        "app": "Linear",
+        "field": "existing_mcp",
+        "note": "Official MCP confirmed via GitHub"
+      },
+      {
+        "app": "Shopify",
+        "field": "buildability_verdict",
+        "note": "Dev stores + official MCP = Buildable_Today"
+      },
+      {
+        "app": "GitHub",
+        "field": "api_surface",
+        "note": "REST + GraphQL + Webhooks correctly captured"
+      },
+      {
+        "app": "Notion",
+        "field": "access_model",
+        "note": "Self_Serve_Free with generous tier"
+      }
+    ],
+    "misses": [
+      {
+        "app": "Plaid",
+        "field": "access_model",
+        "note": "Pass 1 said Self_Serve_Free; Pass 2 found production requires partnership"
+      },
+      {
+        "app": "Salesforce",
+        "field": "buildability_verdict",
+        "note": "Pass 1 said Buildable_With_Workaround; actually Blocked (partner cert required)"
+      },
+      {
+        "app": "WhatsApp Business",
+        "field": "access_model",
+        "note": "Pass 1 missed Meta Business Verification requirement"
+      },
+      {
+        "app": "DealCloud",
+        "field": "primary_blocker",
+        "note": "Pass 1 generic blocker; Pass 2 identified exact partnership model"
+      },
+      {
+        "app": "NotebookLM",
+        "field": "api_surface",
+        "note": "Pass 1 guessed REST; actually no public API"
+      }
+    ]
+  }
+}

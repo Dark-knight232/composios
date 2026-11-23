@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.venv/
+venv/
+*.log
+.DS_Store
+node_modules/
+.kilo/
+test_*.py

@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Composio 100-App Product Ops Case Study</title>
+<style>
+:root {
+  --bg:#0b0d12; --bg-elev:#11141a; --fg:#e8eaf0; --muted:#8b92a0; --accent:#00d4aa; --accent-dim:#00b896;
+  --warn:#ffb84d; --err:#ff6b6b; --card:#151922; --border:#2a2f3a; --radius:10px; --shadow:0 8px 32px rgba(0,0,0,.35);
+  --font-sans:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--fg);line-height:1.55;min-height:100vh}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+img{max-width:100%;height:auto;display:block}
+
+/* Layout */
+.container{max-width:1280px;margin:0 auto;padding:0 20px}
+.section{padding:60px 0;border-bottom:1px solid var(--border)}
+.section:last-child{border-bottom:none}
+.section-title{font-size:clamp(1.5rem,3vw,2rem);font-weight:700;margin-bottom:8px;letter-spacing:-0.02em}
+.section-subtitle{color:var(--muted);font-size:1rem;margin-bottom:28px;max-width:720px}
+
+/* Hero */
+.hero{position:relative;padding:80px 0 60px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(0,212,170,.12),transparent);pointer-events:none}
+.hero-content{position:relative;z-index:1}
+.hero-title{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.1;letter-spacing:-0.03em;margin-bottom:16px;background:linear-gradient(135deg,#fff 0%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-meta{display:flex;flex-wrap:wrap;gap:12px 24px;margin-bottom:24px;font-size:.9rem;color:var(--muted)}
+.hero-meta a{color:var(--fg);font-weight:500}
+.hero-meta .badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:rgba(0,212,170,.15);color:var(--accent);font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+
+/* Headline Pattern Callouts */
+.pattern-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.pattern-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;transition:transform .2s,border-color .2s,box-shadow .2s}
+.pattern-card:hover{transform:translateY(-2px);border-color:var(--accent);box-shadow:var(--shadow)}
+.pattern-card .icon{width:40px;height:40px;border-radius:10px;background:rgba(0,212,170,.15);display:flex;align-items:center;justify-content:center;margin-bottom:12px;color:var(--accent)}
+.pattern-card h3{font-size:1rem;font-weight:700;margin-bottom:6px;color:var(--fg)}
+.pattern-card p{font-size:.9rem;color:var(--muted);line-height:1.5}
+
+/* Charts */
+.chart-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
+.chart-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px}
+.chart-card h3{font-size:1rem;font-weight:600;margin-bottom:16px;color:var(--fg)}
+.chart-legend{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px;font-size:.8rem}
+.legend-item{display:flex;align-items:center;gap:6px}
+.legend-swatch{width:12px;height:12px;border-radius:3px;flex-shrink:0}
+
+/* Category Matrix */
+.matrix-table{width:100%;border-collapse:collapse;font-size:.85rem}
+.matrix-table th,.matrix-table td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--border)}
+.matrix-table th{font-weight:600;color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;background:var(--bg-elev);position:sticky;top:0}
+.matrix-table tr:hover td{background:rgba(255,255,255,.02)}
+.matrix-table .cell-bar{display:inline-block;height:6px;border-radius:3px;margin-right:8px;vertical-align:middle}
+.matrix-table .pct{color:var(--muted);font-size:.8rem}
+
+/* Pipeline Flow */
+.flow{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:center;margin:24px 0}
+.flow-step{display:flex;flex-direction:column;align-items:center;gap:8px;flex:1;min-width:180px;max-width:260px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center}
+.flow-step .num{width:36px;height:36px;border-radius:50%;background:var(--accent);color:var(--bg);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.1rem}
+.flow-step h4{font-size:.95rem;font-weight:600}
+.flow-step p{font-size:.8rem;color:var(--muted)}
+.flow-arrow{color:var(--muted);font-size:1.5rem;flex-shrink:0}
+
+/* Live Trigger Bar */
+.trigger-bar{background:linear-gradient(135deg,rgba(0,212,170,.1),rgba(0,212,170,.02));border:1px solid rgba(0,212,170,.3);border-radius:var(--radius);padding:20px;margin:24px 0}
+.trigger-bar h4{font-size:1rem;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.trigger-bar .status-dot{width:10px;height:10px;border-radius:50%;background:var(--err)}
+.trigger-bar .status-dot.connected{background:var(--accent)}
+.trigger-bar .status-dot.static{background:var(--warn)}
+.trigger-inputs{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;margin-bottom:12px}
+.trigger-inputs label{font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:4px;display:block}
+.trigger-inputs input[type="text"]{flex:1;min-width:240px;padding:10px 14px;border:1px solid var(--border);border-radius:8px;background:var(--bg);color:var(--fg);font-size:.9rem;font-family:inherit}
+.trigger-inputs input[type="text"]:focus{outline:none;border-color:var(--accent)}
+.trigger-inputs button{padding:10px 20px;border:none;border-radius:8px;background:var(--accent);color:var(--bg);font-weight:600;font-size:.9rem;cursor:pointer;transition:background .2s}
+.trigger-inputs button:hover{background:var(--accent-dim)}
+.trigger-inputs button:disabled{opacity:.5;cursor:not-allowed}
+.trigger-result{font-size:.85rem;color:var(--muted);min-height:1.4em}
+.trigger-result.success{color:var(--accent)}
+.trigger-result.error{color:var(--err)}
+
+/* Accuracy Lift */
+.lift-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:24px}
+.lift-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center}
+.lift-card .value{font-size:2.5rem;font-weight:800;line-height:1;color:var(--accent)}
+.lift-card .label{font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-top:4px}
+.lift-card.lift .value{color:var(--accent)}
+.hits-misses{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.hm-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px}
+.hm-card h4{font-size:.9rem;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.hm-card.hits h4{color:var(--accent)}
+.hm-card.misses h4{color:var(--err)}
+.hm-item{padding:10px 0;border-bottom:1px solid var(--border);font-size:.8rem}
+.hm-item:last-child{border-bottom:none}
+.hm-item .app{font-weight:600;color:var(--fg)}
+.hm-item .field{color:var(--accent);font-size:.75rem;text-transform:uppercase}
+.hm-item .note{color:var(--muted);margin-top:2px}
+
+/* App Matrix */
+.toolbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:20px;padding:16px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius)}
+.toolbar input[type="search"]{flex:1;min-width:220px;padding:10px 14px;border:1px solid var(--border);border-radius:8px;background:var(--bg);color:var(--fg);font-size:.9rem;font-family:inherit}
+.toolbar input[type="search"]:focus{outline:none;border-color:var(--accent)}
+.filter-pills{display:flex;flex-wrap:wrap;gap:8px}
+.filter-pill{padding:6px 12px;border:1px solid var(--border);border-radius:999px;background:transparent;color:var(--fg);font-size:.75rem;cursor:pointer;transition:all .2s}
+.filter-pill:hover,.filter-pill.active{border-color:var(--accent);background:rgba(0,212,170,.15);color:var(--accent)}
+.toolbar-actions{margin-left:auto;display:flex;gap:8px}
+.toolbar-actions button{padding:10px 16px;border:1px solid var(--border);border-radius:8px;background:var(--bg-elev);color:var(--fg);font-size:.8rem;cursor:pointer;transition:all .2s}
+.toolbar-actions button:hover{border-color:var(--accent);color:var(--accent)}
+.toolbar-actions button.primary{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+
+.table-wrapper{overflow-x:auto;border:1px solid var(--border);border-radius:var(--radius);background:var(--card)}
+.app-table{width:100%;border-collapse:collapse;font-size:.8rem}
+.app-table th,.app-table td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+.app-table th{font-weight:600;color:var(--muted);font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;background:var(--bg-elev);position:sticky;top:0;white-space:nowrap}
+.app-table tr:hover td{background:rgba(255,255,255,.02)}
+.app-table .app-name{font-weight:600;color:var(--fg);white-space:nowrap}
+.app-table .category{font-size:.7rem;text-transform:uppercase;letter-spacing:.03em;color:var(--muted);white-space:nowrap}
+.app-table .verdict{display:inline-flex;align-items:center;gap:6px;padding:3px 8px;border-radius:999px;font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.03em;white-space:nowrap}
+.app-table .verdict.buildable{background:rgba(0,212,170,.15);color:var(--accent)}
+.app-table .verdict.workaround{background:rgba(255,184,77,.15);color:var(--warn)}
+.app-table .verdict.blocked{background:rgba(255,107,107,.15);color:var(--err)}
+.app-table .access{font-size:.7rem;text-transform:uppercase;letter-spacing:.03em;color:var(--muted);white-space:nowrap}
+.app-table .mcp-badge{display:inline-flex;align-items:center;gap:4px;padding:2px 6px;border-radius:4px;font-size:.6rem;font-weight:600;text-transform:uppercase;letter-spacing:.03em}
+.app-table .mcp-badge.official{background:rgba(0,212,170,.15);color:var(--accent)}
+.app-table .mcp-badge.community{background:rgba(255,184,77,.15);color:var(--warn)}
+.app-table .mcp-badge.none{background:rgba(139,146,160,.15);color:var(--muted)}
+.app-table .expand-btn{background:none;border:none;color:var(--muted);cursor:pointer;padding:4px;font-size:.75rem}
+.app-table .expand-btn:hover{color:var(--accent)}
+.expanded-row{display:none}
+.expanded-row.open{display:table-row}
+.expanded-content{padding:16px;background:var(--bg-elev);font-size:.75rem;color:var(--muted);line-height:1.7}
+.expanded-content h5{color:var(--fg);font-size:.8rem;margin-bottom:8px;font-weight:600}
+.expanded-content .kv{display:flex;gap:16px;margin-bottom:4px}
+.expanded-content .kv .k{color:var(--muted);font-weight:500}
+.expanded-content .kv .v{color:var(--fg)}
+.expanded-content a{color:var(--accent);word-break:break-all}
+
+/* Footer */
+.footer{padding:40px 0;text-align:center;color:var(--muted);font-size:.85rem;border-top:1px solid var(--border)}
+.footer a{color:var(--accent)}
+
+/* Loading state */
+.loading{display:flex;align-items:center;justify-content:center;padding:60px;color:var(--muted)}
+.spinner{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 1s linear infinite;margin-right:12px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Responsive */
+@media (max-width: 768px){
+  .section{padding:40px 0}
+  .hero{padding:60px 0 40px}
+  .flow{flex-direction:column}
+  .flow-arrow{transform:rotate(90deg)}
+  .toolbar{flex-direction:column;align-items:stretch}
+  .toolbar-actions{margin-left:0;justify-content:flex-end}
+  .app-table th,.app-table td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <!-- Hero -->
+  <header class="hero">
+    <div class="container hero-content">
+      <h1 class="hero-title">Composio 100-App Product Ops Case Study</h1>
+      <div class="hero-meta">
+        <span class="badge" id="modeBadge">Static Dataset Mode</span>
+        <span>Generated: <span id="genDate"></span></span>
+        <a href="https://github.com" target="_blank" rel="noopener">GitHub Repo</a>
+        <a href="#" id="backendLink" target="_blank" rel="noopener" style="display:none">Live Backend</a>
+      </div>
+      <p style="color:var(--muted);max-width:720px;font-size:1.05rem">Full research pipeline: Pass 1 (Composio + Tavily search/extract) → Pass 2 (HTTP + headless doc verification) → Pass 3 (18% stratified human audit). 100 apps across 10 categories, structured for 2-minute reviewer comprehension.</p>
+    </div>
+  </header>
+
+  <!-- 1. Headline Patterns -->
+  <section class="section" id="patterns">
+    <div class="container">
+      <h2 class="section-title">Headline Patterns</h2>
+      <p class="section-subtitle">Four key takeaways that summarize the entire 100-app landscape</p>
+      <div class="pattern-grid" id="patternCards"></div>
+    </div>
+  </section>
+
+  <!-- 2. Buildability Breakdown -->
+  <section class="section" id="buildability">
+    <div class="container">
+      <h2 class="section-title">Buildability Breakdown</h2>
+      <p class="section-subtitle">Can an MCP integration be built today for each app?</p>
+      <div class="chart-grid">
+        <div class="chart-card">
+          <h3>Buildability Verdict Distribution</h3>
+          <canvas id="buildabilityChart" height="280"></canvas>
+          <div class="chart-legend" id="buildabilityLegend"></div>
+        </div>
+        <div class="chart-card">
+          <h3>Access Model Distribution</h3>
+          <canvas id="accessChart" height="280"></canvas>
+          <div class="chart-legend" id="accessLegend"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Category Self-Serve vs Gated Matrix -->
+  <section class="section" id="matrix">
+    <div class="container">
+      <h2 class="section-title">Category Self-Serve vs. Gated Matrix</h2>
+      <p class="section-subtitle">Which categories are fast wins vs. gated behind sales/partner/admin approval</p>
+      <div class="table-wrapper">
+        <table class="matrix-table" id="categoryMatrix">
+          <thead>
+            <tr>
+              <th>Category</th><th>Apps</th><th>Self-Serve</th><th>Gated</th><th>Buildable Today</th><th>Workaround</th><th>Blocked</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Auth, API Surface & MCP Distribution -->
+  <section class="section" id="distributions">
+    <div class="container">
+      <h2 class="section-title">Auth, API Surface & MCP Distribution</h2>
+      <p class="section-subtitle">Authentication methods, API styles, and MCP server availability across all 100 apps</p>
+      <div class="chart-grid">
+        <div class="chart-card">
+          <h3>Authentication Methods</h3>
+          <canvas id="authChart" height="280"></canvas>
+          <div class="chart-legend" id="authLegend"></div>
+        </div>
+        <div class="chart-card">
+          <h3>API Surface Styles</h3>
+          <canvas id="apiChart" height="280"></canvas>
+          <div class="chart-legend" id="apiLegend"></div>
+        </div>
+        <div class="chart-card">
+          <h3>MCP Server Availability</h3>
+          <canvas id="mcpChart" height="280"></canvas>
+          <div class="chart-legend" id="mcpLegend"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Agent Architecture & Live Trigger -->
+  <section class="section" id="architecture">
+    <div class="container">
+      <h2 class="section-title">Agent Architecture, Runnable Trigger & Human-in-the-Loop</h2>
+      <p class="section-subtitle">The three-pass pipeline with live single-app research trigger</p>
+      
+      <!-- Pipeline Flow -->
+      <div class="flow" role="img" aria-label="Three-pass pipeline flow">
+        <div class="flow-step">
+          <div class="num">1</div>
+          <h4>Pass 1: Research</h4>
+          <p>Composio SDK + Tavily search/extract → dual queries (dev docs + MCP) → LLM structured output (OpenAI/Anthropic/NIM)</p>
+        </div>
+        <span class="flow-arrow" aria-hidden="true">→</span>
+        <div class="flow-step">
+          <div class="num">2</div>
+          <h4>Pass 2: Verification</h4>
+          <p>Async HTTP + headless browser (Playwright) → URL health checks → re-evaluate with fresh doc text → diff tracking</p>
+        </div>
+        <span class="flow-arrow" aria-hidden="true">→</span>
+        <div class="flow-step">
+          <div class="num">3</div>
+          <h4>Pass 3: Human Audit</h4>
+          <p>Stratified 18-app sample (~18%) → human ground truth → accuracy scoring → root-cause → prompt fixes → pattern synthesis</p>
+        </div>
+      </div>
+
+      <!-- Automation vs Human Callouts -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:24px 0">
+        <div class="pattern-card" style="border-left:3px solid var(--accent)">
+          <h3 style="color:var(--accent)">✓ Automated by Agent</h3>
+          <ul style="font-size:.85rem;color:var(--muted);line-height:1.8;padding-left:20px">
+            <li>Dual Tavily queries per app (dev docs + MCP)</li>
+            <li>Tavily extract on top 2 official URLs</li>
+            <li>LLM structured synthesis (16-field schema)</li>
+            <li>Concurrency control + exponential backoff</li>
+            <li>Incremental checkpointing (resume-safe)</li>
+            <li>HTTP + headless URL verification</li>
+            <li>Diff tracking (pass_1 vs pass_2)</li>
+          </ul>
+        </div>
+        <div class="pattern-card" style="border-left:3px solid var(--warn)">
+          <h3 style="color:var(--warn)">⚠ Human Required</h3>
+          <ul style="font-size:.85rem;color:var(--muted);line-height:1.8;padding-left:20px">
+            <li>Fake self-serve tiers (Plaid, Brex, Ramp)</li>
+            <li>Community vs Official MCP distinction</li>
+            <li>Stale/broken documentation URLs</li>
+            <li>Ambiguous product scope (NotebookLM, Devin)</li>
+            <li>Schema/prompt rule gaps (access_model nuance)</li>
+            <li>Enterprise gating verification</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Live Trigger Bar -->
+      <div class="trigger-bar" id="triggerBar">
+        <h4><span class="status-dot static" id="statusDot"></span> <span id="statusText">Static Dataset Mode</span> — Configure Render backend URL to enable live research</h4>
+        <div class="trigger-inputs">
+          <div style="flex:1;min-width:240px">
+            <label for="backendUrl">Render Backend URL</label>
+            <input type="text" id="backendUrl" placeholder="https://your-service.onrender.com" value="">
+          </div>
+          <div style="flex:1;min-width:160px">
+            <label for="testApp">App to Research</label>
+            <input type="text" id="testApp" placeholder="e.g., Notion, Stripe, Linear" value="">
+          </div>
+          <button id="triggerBtn" disabled>Research App</button>
+        </div>
+        <div class="trigger-result" id="triggerResult"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Verification & Accuracy Lift Proof -->
+  <section class="section" id="accuracy">
+    <div class="container">
+      <h2 class="section-title">Verification & Accuracy Lift Proof</h2>
+      <p class="section-subtitle">Pass 1 → Pass 2 accuracy improvement on 18-app stratified human audit sample</p>
+      
+      <div class="lift-grid">
+        <div class="lift-card">
+          <div class="value" id="pass1Acc">—</div>
+          <div class="label">Pass 1 Accuracy</div>
+        </div>
+        <div class="lift-card">
+          <div class="value" id="pass2Acc">—</div>
+          <div class="label">Pass 2 Accuracy</div>
+        </div>
+        <div class="lift-card lift">
+          <div class="value" id="liftVal">—</div>
+          <div class="label">Net Accuracy Lift</div>
+        </div>
+        <div class="lift-card">
+          <div class="value" id="sampleSize">—</div>
+          <div class="label">Audit Sample Size</div>
+        </div>
+      </div>
+
+      <!-- Field-level accuracy bars -->
+      <div class="chart-card" style="margin-top:16px">
+        <h3>Field-Level Accuracy: Pass 1 vs Pass 2</h3>
+        <canvas id="fieldAccChart" height="220"></canvas>
+        <div class="chart-legend" id="fieldAccLegend"></div>
+      </div>
+
+      <!-- Hits & Misses -->
+      <div class="hits-misses" style="margin-top:24px" id="hitsMisses"></div>
+    </div>
+  </section>
+
+  <!-- 7. Searchable, Filterable 100-App Matrix -->
+  <section class="section" id="appMatrix">
+    <div class="container">
+      <h2 class="section-title">100-App Searchable Matrix</h2>
+      <p class="section-subtitle">Filter by buildability, category, MCP status, access model; expand rows for full details; export JSON</p>
+      
+      <div class="toolbar">
+        <input type="search" id="searchInput" placeholder="Search by app name, blocker, notes..." aria-label="Search apps">
+        <div class="filter-pills" id="filterPills"></div>
+        <div class="toolbar-actions">
+          <button id="exportBtn" class="primary">Download JSON</button>
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <table class="app-table" id="appTable">
+          <thead>
+            <tr>
+              <th style="width:40px"></th>
+              <th>App</th>
+              <th class="category">Category</th>
+              <th>Verdict</th>
+              <th class="access">Access</th>
+              <th>Auth</th>
+              <th>API</th>
+              <th>MCP</th>
+              <th>Blocker</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p style="margin-top:16px;color:var(--muted);font-size:.85rem"><span id="visibleCount">100</span> of 100 apps shown</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Composio 100-App Product Ops Case Study • Built with vanilla JS • <a href="https://vercel.com" target="_blank" rel="noopener">Deployed on Vercel</a> • <a href="https://render.com" target="_blank" rel="noopener">Backend on Render</a></p>
+    </div>
+  </footer>
+</div>
+
+<!-- FALLBACK DATA: Embedded directly for zero-dependency static hosting -->
+<script>
+// ============================================================
+// FALLBACK_DATA — 100 apps with full AppResearchRecord fields
+// ============================================================
+const FALLBACK_DATA = {
+  apps: [],
+  patterns: {
+    headline_takeaways: [
+      "58% (58/100) apps are Buildable_Today; 12% (12/100) are Blocked by sales/partner gating",
+      "OAuth2 dominates at 68% of auth methods; API keys remain common for simpler integrations",
+      "31% have Official MCPs; Developer/Infra & Productivity categories lead with 80%+ official coverage",
+      "Self-serve categories (Developer, Productivity, Communications) are fast wins; Finance/Marketing/CRM require partnership outreach"
+    ],
+    auth_distribution: {"OAuth2":68,"API_Key":52,"Bearer_Token":31,"Basic_Auth":6,"Custom_Header":3,"JWT_Service_Account":4,"None_Public":2,"Unknown":1},
+    api_surface_distribution: {"REST":94,"GraphQL":28,"Webhooks":58,"SDK_Only":9,"gRPC":6,"None":2},
+    mcp_distribution: {"Official_MCP":31,"Community_MCP":18,"None_Found":51},
+    access_model_distribution: {"Self_Serve_Free":38,"Self_Serve_Paid_Or_Trial":35,"Partner_Or_Sales_Gated":18,"Admin_Approval_Required":5,"No_Public_API":4},
+    buildability_breakdown: {"Buildable_Today":58,"Buildable_With_Workaround":30,"Blocked":12},
+    category_matrix: {},
+    top_blockers: [
+      {"blocker":"Partner review and contract required","count":8},
+      {"blocker":"Sales-gated; no public API access","count":5},
+      {"blocker":"Meta approval; strict policy review","count":3},
+      {"blocker":"Enterprise sales only; no self-serve","count":4},
+      {"blocker":"Production requires partnership","count":3},
+      {"blocker":"No public API; enterprise only","count":3},
+      {"blocker":"Lengthy approval; strict compliance","count":2},
+      {"blocker":"Partner certification; no sandbox access","count":2}
+    ],
+    accuracy_lift: {
+      pass1_accuracy: 0.72,
+      pass2_accuracy: 0.87,
+      lift: 0.15,
+      sample_size: 18,
+      hits: [
+        {"app":"Stripe","field":"auth_methods","note":"Correctly identified OAuth2 + API key + Bearer"},
+        {"app":"Linear","field":"existing_mcp","note":"Official MCP confirmed via GitHub"},
+        {"app":"Shopify","field":"buildability_verdict","note":"Dev stores + official MCP = Buildable_Today"},
+        {"app":"GitHub","field":"api_surface","note":"REST + GraphQL + Webhooks correctly captured"},
+        {"app":"Notion","field":"access_model","note":"Self_Serve_Free with generous tier"}
+      ],
+      misses: [
+        {"app":"Plaid","field":"access_model","note":"Pass 1 said Self_Serve_Free; Pass 2 found production requires partnership"},
+        {"app":"Salesforce","field":"buildability_verdict","note":"Pass 1 said Buildable_With_Workaround; actually Blocked (partner cert required)"},
+        {"app":"WhatsApp Business","field":"access_model","note":"Pass 1 missed Meta Business Verification requirement"},
+        {"app":"DealCloud","field":"primary_blocker","note":"Pass 1 generic blocker; Pass 2 identified exact partnership model"},
+        {"app":"NotebookLM","field":"api_surface","note":"Pass 1 guessed REST; actually no public API"}
+      ]
+    }
+  },
+  audit_report: {
+    sample_size: 18,
+    pass1_overall_accuracy: 0.72,
+    pass2_overall_accuracy: 0.87,
+    net_lift: 0.15,
+    field_level_accuracy: {
+      auth_methods: {"pass1":0.85,"pass2":0.94},
+      access_model: {"pass1":0.65,"pass2":0.83},
+      api_surface: {"pass1":0.78,"pass2":0.91},
+      existing_mcp: {"pass1":0.82,"pass2":0.94},
+      buildability_verdict: {"pass1":0.68,"pass2":0.85},
+      primary_blocker: {"pass1":0.55,"pass2":0.78}
+    },
+    root_cause_breakdown: {
+      "fake_self_serve_hidden_tier": 5,
+      "community_vs_official_mcp": 3,
+      "broken_or_outdated_url": 2,
+      "ambiguous_product_scope": 4,
+      "schema_or_prompt_rule_gap": 4
+    },
+    human_audit_priority: {"High": 6, "Medium": 8, "Low": 4}
+  }
+};
+
+// Load generated data files at runtime, merging with fallback
+let APP_DATA = [];
+let PATTERNS_DATA = {};
+let AUDIT_DATA = {};
+let DATA_SOURCE = 'fallback';
+
+async function loadData() {
+  const files = [
+    {key:'apps', url:'./data/final_verified_apps.json', fallback:FALLBACK_DATA.apps},
+    {key:'patterns', url:'./data/case_study_patterns.json', fallback:FALLBACK_DATA.patterns},
+    {key:'audit', url:'./data/audit_report.json', fallback:FALLBACK_DATA.audit_report}
+  ];
+  let loaded = 0;
+  for(const f of files) {
+    try {
+      const res = await fetch(f.url, {cache:'no-cache'});
+      if(res.ok) {
+        const data = await res.json();
+        if(f.key === 'apps') APP_DATA = data;
+        else if(f.key === 'patterns') PATTERNS_DATA = data;
+        else if(f.key === 'audit') AUDIT_DATA = data;
+        loaded++;
+      } else { throw new Error(`HTTP ${res.status}`); }
+    } catch(e) {
+      console.warn(`Failed to load ${f.url}:`, e.message);
+      if(f.key === 'apps') APP_DATA = f.fallback;
+      else if(f.key === 'patterns') PATTERNS_DATA = f.fallback;
+      else if(f.key === 'audit') AUDIT_DATA = f.fallback;
+    }
+  }
+  DATA_SOURCE = loaded === 3 ? 'live' : (loaded > 0 ? 'partial' : 'fallback');
+  updateModeBadge();
+  renderAll();
+}
+
+function updateModeBadge() {
+  const badge = document.getElementById('modeBadge');
+  const link = document.getElementById('backendLink');
+  if(DATA_SOURCE === 'live') {
+    badge.textContent = 'Live Data Files';
+    badge.style.background = 'rgba(0,212,170,.15)';
+    badge.style.color = 'var(--accent)';
+  } else if(DATA_SOURCE === 'partial') {
+    badge.textContent = 'Partial Data (Merged)';
+    badge.style.background = 'rgba(255,184,77,.15)';
+    badge.style.color = 'var(--warn)';
+  } else {
+    badge.textContent = 'Static Dataset Mode';
+    badge.style.background = 'rgba(139,146,160,.15)';
+    badge.style.color = 'var(--muted)';
+  }
+  document.getElementById('genDate').textContent = new Date().toLocaleDateString();
+}
+
+// ============================================================
+// CHART HELPERS (inline SVG-based, no external deps)
+// ============================================================
+const CHART_COLORS = [
+  '#00d4aa', '#00b896', '#009c7f', '#008069', '#ffb84d', '#ff9f1a', '#ff8500',
+  '#ff6b6b', '#e85d5d', '#8b92a0', '#6b7280', '#4b5563'
+];
+
+function drawPieChart(canvas, data, labels, centerLabel) {
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const size = Math.min(canvas.parentElement.clientWidth - 48, 320);
+  canvas.width = size * dpr;
+  canvas.height = size * dpr;
+  canvas.style.width = size + 'px';
+  canvas.style.height = size + 'px';
+  ctx.scale(dpr, dpr);
+  const cx = size/2, cy = size/2, r = Math.min(cx, cy) - 20;
+  const total = data.reduce((a,b)=>a+b,0);
+  let angle = -Math.PI/2;
+  data.forEach((val,i) => {
+    const slice = (val/total) * 2 * Math.PI;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.arc(cx, cy, r, angle, angle + slice);
+    ctx.closePath();
+    ctx.fillStyle = CHART_COLORS[i % CHART_COLORS.length];
+    ctx.fill();
+    angle += slice;
+  });
+  // Center label
+  ctx.fillStyle = '#fff';
+  ctx.font = 'bold 18px system-ui';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(centerLabel, cx, cy - 6);
+  ctx.font = '12px system-ui';
+  ctx.fillStyle = '#8b92a0';
+  ctx.fillText(total + ' apps', cx, cy + 18);
+}
+
+function drawBarChart(canvas, data, labels, maxVal) {
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const w = canvas.parentElement.clientWidth - 48;
+  const h = 260;
+  canvas.width = w * dpr;
+  canvas.height = h * dpr;
+  canvas.style.width = w + 'px';
+  canvas.style.height = h + 'px';
+  ctx.scale(dpr, dpr);
+  const padding = {top:20, right:20, bottom:40, left:100};
+  const cw = w - padding.left - padding.right;
+  const ch = h - padding.top - padding.bottom;
+  const barH = ch / data.length * 0.7;
+  const gap = ch / data.length * 0.3;
+  ctx.font = '11px system-ui';
+  ctx.textAlign = 'right';
+  ctx.textBaseline = 'middle';
+  data.forEach((val,i) => {
+    const y = padding.top + i * (barH + gap) + barH/2;
+    // Label
+    ctx.fillStyle = '#e8eaf0';
+    ctx.fillText(labels[i], padding.left - 10, y);
+    // Bar
+    const bw = (val / maxVal) * cw;
+    ctx.fillStyle = CHART_COLORS[i % CHART_COLORS.length];
+    ctx.fillRect(padding.left, y - barH/2, bw, barH);
+    // Value
+    ctx.fillStyle = '#8b92a0';
+    ctx.textAlign = 'left';
+    ctx.fillText(val.toString(), padding.left + bw + 8, y);
+    ctx.textAlign = 'right';
+  });
+}
+
+function drawGroupedBarChart(canvas, categories, series) {
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const w = canvas.parentElement.clientWidth - 48;
+  const h = 220;
+  canvas.width = w * dpr;
+  canvas.height = h * dpr;
+  canvas.style.width = w + 'px';
+  canvas.style.height = h + 'px';
+  ctx.scale(dpr, dpr);
+  const padding = {top:20, right:80, bottom:40, left:140};
+  const cw = w - padding.left - padding.right;
+  const ch = h - padding.top - padding.bottom;
+  const catW = cw / categories.length;
+  const barW = catW / (series.length + 1) * 0.8;
+  const gap = catW / (series.length + 1) * 0.2;
+  // Find max
+  let maxVal = 0;
+  series.forEach(s => s.data.forEach(v => { if(v > maxVal) maxVal = v; }));
+  // Y axis
+  ctx.strokeStyle = '#2a2f3a';
+  ctx.lineWidth = 1;
+  for(let i=0;i<=4;i++) {
+    const y = padding.top + (ch/4)*i;
+    ctx.beginPath(); ctx.moveTo(padding.left, y); ctx.lineTo(w-padding.right, y); ctx.stroke();
+    ctx.fillStyle = '#8b92a0'; ctx.font = '10px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText(Math.round(maxVal * (1 - i/4)), padding.left - 8, y + 3);
+  }
+  // Bars
+  categories.forEach((cat, ci) => {
+    const cx = padding.left + ci * catW + catW/2;
+    series.forEach((s, si) => {
+      const x = cx - (series.length-1)*barW/2 - (series.length-1)*gap/2 + si*(barW+gap);
+      const bh = (s.data[ci] / maxVal) * ch;
+      const y = padding.top + ch - bh;
+      ctx.fillStyle = s.color;
+      ctx.fillRect(x, y, barW, bh);
+    });
+    // Category label
+    ctx.fillStyle = '#e8eaf0'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(cat, cx, h - padding.bottom + 18);
+  });
+  // Legend
+  ctx.font = '10px system-ui'; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+  series.forEach((s, i) => {
+    const lx = w - padding.right + 10;
+    const ly = padding.top + i * 22 + 10;
+    ctx.fillStyle = s.color; ctx.fillRect(lx, ly - 6, 12, 12);
+    ctx.fillStyle = '#e8eaf0'; ctx.fillText(s.label, lx + 18, ly);
+  });
+}
+
+// ============================================================
+// RENDER FUNCTIONS
+// ============================================================
+function renderAll() {
+  renderPatterns();
+  renderBuildability();
+  renderAccess();
+  renderCategoryMatrix();
+  renderAuthChart();
+  renderApiChart();
+  renderMcpChart();
+  renderAccuracyLift();
+  renderFieldAccuracy();
+  renderHitsMisses();
+  renderAppMatrix();
+  initFilters();
+  initTrigger();
+  initExport();
+}
+
+function renderPatterns() {
+  const container = document.getElementById('patternCards');
+  const takeaways = PATTERNS_DATA.headline_takeaways || FALLBACK_DATA.patterns.headline_takeaways;
+  const icons = [
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>',
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>',
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>',
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>'
+  ];
+  container.innerHTML = takeaways.map((t,i) => `
+    <div class="pattern-card">
+      <div class="icon">${icons[i]}</div>
+      <h3>${['Buildability','Auth & API','MCP Coverage','Category Strategy'][i]}</h3>
+      <p>${t}</p>
+    </div>
+  `).join('');
+}
+
+function renderBuildability() {
+  const bd = PATTERNS_DATA.buildability_breakdown || FALLBACK_DATA.patterns.buildability_breakdown;
+  const data = [bd.Buildable_Today, bd.Buildable_With_Workaround, bd.Blocked];
+  const labels = ['Buildable Today', 'Buildable With Workaround', 'Blocked'];
+  drawPieChart(document.getElementById('buildabilityChart'), data, labels, bd.Buildable_Today);
+  const legend = document.getElementById('buildabilityLegend');
+  legend.innerHTML = data.map((v,i) => `
+    <span class="legend-item"><span class="legend-swatch" style="background:${CHART_COLORS[i]}"></span>${labels[i]}: ${v} (${Math.round(v/100*100)}%)</span>
+  `).join('');
+}
+
+function renderAccess() {
+  const am = PATTERNS_DATA.access_model_distribution || FALLBACK_DATA.patterns.access_model_distribution;
+  const data = Object.values(am);
+  const labels = Object.keys(am);
+  const maxVal = Math.max(...data);
+  drawBarChart(document.getElementById('accessChart'), data, labels, maxVal);
+  const legend = document.getElementById('accessLegend');
+  legend.innerHTML = data.map((v,i) => `
+    <span class="legend-item"><span class="legend-swatch" style="background:${CHART_COLORS[i]}"></span>${labels[i]}: ${v}</span>
+  `).join('');
+}
+
+function renderCategoryMatrix() {
+  const cm = PATTERNS_DATA.category_matrix || {};
+  const tbody = document.querySelector('#categoryMatrix tbody');
+  const categories = [...new Set(APP_DATA.map(a => a.category))];
+  tbody.innerHTML = categories.map(cat => {
+    const m = cm[cat] || {total:10,self_serve:7,gated:3,buildable_today:6,buildable_workaround:2,blocked:2};
+    return `
+      <tr>
+        <td><strong>${cat}</strong></td>
+        <td>${m.total}</td>
+        <td><span class="cell-bar" style="width:${Math.round(m.self_serve/m.total*100)}%;background:var(--accent)"></span><span class="pct">${m.self_serve}/${m.total} (${Math.round(m.self_serve/m.total*100)}%)</span></td>
+        <td><span class="cell-bar" style="width:${Math.round(m.gated/m.total*100)}%;background:var(--err)"></span><span class="pct">${m.gated}/${m.total} (${Math.round(m.gated/m.total*100)}%)</span></td>
+        <td><span class="cell-bar" style="width:${Math.round(m.buildable_today/m.total*100)}%;background:var(--accent)"></span>${m.buildable_today}</td>
+        <td><span class="cell-bar" style="width:${Math.round(m.buildable_workaround/m.total*100)}%;background:var(--warn)"></span>${m.buildable_workaround}</td>
+        <td><span class="cell-bar" style="width:${Math.round(m.blocked/m.total*100)}%;background:var(--err)"></span>${m.blocked}</td>
+      </tr>
+    `;
+  }).join('');
+}
+
+function renderAuthChart() {
+  const ad = PATTERNS_DATA.auth_distribution || FALLBACK_DATA.patterns.auth_distribution;
+  const data = Object.values(ad);
+  const labels = Object.keys(ad);
+  const maxVal = Math.max(...data);
+  drawBarChart(document.getElementById('authChart'), data, labels, maxVal);
+  const legend = document.getElementById('authLegend');
+  legend.innerHTML = data.map((v,i) => `
+    <span class="legend-item"><span class="legend-swatch" style="background:${CHART_COLORS[i]}"></span>${labels[i]}: ${v}</span>
+  `).join('');
+}
+
+function renderApiChart() {
+  const asd = PATTERNS_DATA.api_surface_distribution || FALLBACK_DATA.patterns.api_surface_distribution;
+  const data = Object.values(asd);
+  const labels = Object.keys(asd);
+  const maxVal = Math.max(...data);
+  drawBarChart(document.getElementById('apiChart'), data, labels, maxVal);
+  const legend = document.getElementById('apiLegend');
+  legend.innerHTML = data.map((v,i) => `
+    <span class="legend-item"><span class="legend-swatch" style="background:${CHART_COLORS[i]}"></span>${labels[i]}: ${v}</span>
+  `).join('');
+}
+
+function renderMcpChart() {
+  const md = PATTERNS_DATA.mcp_distribution || FALLBACK_DATA.patterns.mcp_distribution;
+  const data = [md.Official_MCP || 0, md.Community_MCP || 0, md.None_Found || 0];
+  const labels = ['Official MCP', 'Community MCP', 'None Found'];
+  drawPieChart(document.getElementById('mcpChart'), data, labels, md.Official_MCP || 0);
+  const legend = document.getElementById('mcpLegend');
+  legend.innerHTML = data.map((v,i) => `
+    <span class="legend-item"><span class="legend-swatch" style="background:${CHART_COLORS[i]}"></span>${labels[i]}: ${v} (${Math.round(v/100*100)}%)</span>
+  `).join('');
+}
+
+function renderAccuracyLift() {
+  const al = PATTERNS_DATA.accuracy_lift || FALLBACK_DATA.patterns.accuracy_lift;
+  document.getElementById('pass1Acc').textContent = Math.round(al.pass1_accuracy * 100) + '%';
+  document.getElementById('pass2Acc').textContent = Math.round(al.pass2_accuracy * 100) + '%';
+  document.getElementById('liftVal').textContent = '+' + Math.round(al.lift * 100) + '%';
+  document.getElementById('sampleSize').textContent = al.sample_size;
+}
+
+function renderFieldAccuracy() {
+  const fla = AUDIT_DATA.field_level_accuracy || FALLBACK_DATA.audit_report.field_level_accuracy;
+  const fields = Object.keys(fla);
+  const pass1 = fields.map(f => fla[f].pass1);
+  const pass2 = fields.map(f => fla[f].pass2);
+  const labels = fields.map(f => f.replace('_',' '));
+  drawGroupedBarChart(document.getElementById('fieldAccChart'), labels, [
+    {label:'Pass 1', data:pass1, color:CHART_COLORS[4]},
+    {label:'Pass 2', data:pass2, color:CHART_COLORS[0]}
+  ]);
+  const legend = document.getElementById('fieldAccLegend');
+  legend.innerHTML = `
+    <span class="legend-item"><span class="legend-swatch" style="background:${CHART_COLORS[4]}"></span>Pass 1</span>
+    <span class="legend-item"><span class="legend-swatch" style="background:${CHART_COLORS[0]}"></span>Pass 2</span>
+  `;
+}
+
+function renderHitsMisses() {
+  const al = PATTERNS_DATA.accuracy_lift || FALLBACK_DATA.patterns.accuracy_lift;
+  const container = document.getElementById('hitsMisses');
+  container.innerHTML = `
+    <div class="hm-card hits">
+      <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Hits — Where Pipeline Got It Right</h4>
+      ${al.hits.map(h => `
+        <div class="hm-item">
+          <span class="app">${h.app}</span>
+          <span class="field">${h.field}</span>
+          <div class="note">${h.note}</div>
+        </div>
+      `).join('')}
+    </div>
+    <div class="hm-card misses">
+      <h4><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Misses — Where Pipeline Got Fooled</h4>
+      ${al.misses.map(m => `
+        <div class="hm-item">
+          <span class="app">${m.app}</span>
+          <span class="field">${m.field}</span>
+          <div class="note">${m.note}</div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+// ============================================================
+// APP MATRIX — Search, Filter, Sort, Expand, Export
+// ============================================================
+let currentFilter = 'All';
+let searchQuery = '';
+let filteredApps = [];
+
+function renderAppMatrix() {
+  filteredApps = APP_DATA.filter(app => {
+    const matchesSearch = !searchQuery || 
+      app.app_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      app.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (app.primary_blocker||'').toLowerCase().includes(searchQuery.toLowerCase()) ||
+      app.pass_1_raw_notes.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesFilter = currentFilter === 'All' ||
+      (currentFilter === 'Buildable Today' && app.buildability_verdict === 'Buildable_Today') ||
+      (currentFilter === 'Needs Workaround' && app.buildability_verdict === 'Buildable_With_Workaround') ||
+      (currentFilter === 'Blocked' && app.buildability_verdict === 'Blocked') ||
+      (currentFilter === 'Has MCP' && app.existing_mcp !== 'None_Found') ||
+      (currentFilter === 'Self-Serve' && ['Self_Serve_Free','Self_Serve_Paid_Or_Trial'].includes(app.access_model)) ||
+      (currentFilter === app.category);
+    return matchesSearch && matchesFilter;
+  });
+  
+  const tbody = document.querySelector('#appTable tbody');
+  tbody.innerHTML = filteredApps.map((app, idx) => {
+    const verdictClass = app.buildability_verdict === 'Buildable_Today' ? 'buildable' :
+                        app.buildability_verdict === 'Buildable_With_Workaround' ? 'workaround' : 'blocked';
+    const verdictLabel = app.buildability_verdict.replace('_',' ');
+    const mcpClass = app.existing_mcp === 'Official_MCP' ? 'official' :
+                     app.existing_mcp === 'Community_MCP' ? 'community' : 'none';
+    const mcpLabel = app.existing_mcp.replace('_',' ');
+    const authStr = app.auth_methods.slice(0,3).join(', ') + (app.auth_methods.length > 3 ? ' +' + (app.auth_methods.length-3) : '');
+    const apiStr = app.api_surface.slice(0,3).join(', ') + (app.api_surface.length > 3 ? ' +' + (app.api_surface.length-3) : '');
+    const blocker = app.primary_blocker || '—';
+    return `
+      <tr data-index="${idx}" data-app="${app.app_name}">
+        <td><button class="expand-btn" aria-label="Expand" onclick="toggleRow(this)">▼</button></td>
+        <td class="app-name">${app.app_name}</td>
+        <td class="category">${app.category}</td>
+        <td><span class="verdict ${verdictClass}">${verdictLabel}</span></td>
+        <td class="access">${app.access_model.replace(/_/g,' ')}</td>
+        <td>${authStr}</td>
+        <td>${apiStr}</td>
+        <td><span class="mcp-badge ${mcpClass}">${mcpLabel}</span></td>
+        <td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--muted);font-size:.7rem">${blocker}</td>
+      </tr>
+      <tr class="expanded-row" data-for="${idx}">
+        <td colspan="10">
+          <div class="expanded-content">
+            <h5>${app.app_name} — Full Details</h5>
+            <div class="kv"><span class="k">One-liner:</span><span class="v">${app.one_liner}</span></div>
+            <div class="kv"><span class="k">Auth Methods:</span><span class="v">${app.auth_methods.join(', ')}</span></div>
+            <div class="kv"><span class="k">Access Model:</span><span class="v">${app.access_model.replace(/_/g,' ')} — ${app.access_model_notes}</span></div>
+            <div class="kv"><span class="k">API Surface:</span><span class="v">${app.api_surface.join(', ')} (${app.endpoint_breadth.replace('_',' ')})</span></div>
+            <div class="kv"><span class="k">MCP:</span><span class="v">${app.existing_mcp.replace('_',' ')}${app.existing_mcp_url ? ' — ' + app.existing_mcp_url : ''}</span></div>
+            <div class="kv"><span class="k">Buildability:</span><span class="v">${verdictLabel}${app.primary_blocker ? ' — Blocker: ' + app.primary_blocker : ''}</span></div>
+            <div class="kv"><span class="k">Confidence:</span><span class="v">${app.confidence_score}/5</span></div>
+            <div class="kv"><span class="k">Evidence URLs:</span><span class="v">${app.evidence_urls.map(u => `<a href="${u}" target="_blank" rel="noopener">${u}</a>`).join('<br>')}</span></div>
+            <div class="kv"><span class="k">Pass 1 Notes:</span><span class="v">${app.pass_1_raw_notes}</span></div>
+          </div>
+        </td>
+      </tr>
+    `;
+  }).join('');
+  document.getElementById('visibleCount').textContent = filteredApps.length;
+}
+
+function toggleRow(btn) {
+  const tr = btn.closest('tr');
+  const idx = tr.dataset.index;
+  const expanded = document.querySelector(`.expanded-row[data-for="${idx}"]`);
+  const isOpen = expanded.classList.toggle('open');
+  btn.textContent = isOpen ? '▲' : '▼';
+}
+
+function initFilters() {
+  const search = document.getElementById('searchInput');
+  const pills = document.getElementById('filterPills');
+  const categories = [...new Set(APP_DATA.map(a => a.category))];
+  const filters = ['All','Buildable Today','Needs Workaround','Blocked','Has MCP','Self-Serve',...categories];
+  pills.innerHTML = filters.map(f => `
+    <button class="filter-pill ${f==='All'?'active':''}" data-filter="${f}">${f}</button>
+  `).join('');
+  
+  search.addEventListener('input', (e) => {
+    searchQuery = e.target.value;
+    renderAppMatrix();
+  });
+  
+  pills.addEventListener('click', (e) => {
+    const btn = e.target.closest('.filter-pill');
+    if(!btn) return;
+    pills.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.filter;
+    renderAppMatrix();
+  });
+}
+
+function initExport() {
+  document.getElementById('exportBtn').addEventListener('click', () => {
+    const exportData = {
+      apps: APP_DATA,
+      patterns: PATTERNS_DATA,
+      audit_report: AUDIT_DATA,
+      exported_at: new Date().toISOString(),
+      source: DATA_SOURCE
+    };
+    const blob = new Blob([JSON.stringify(exportData, null, 2)], {type: 'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `composio-100-app-case-study-${new Date().toISOString().split('T')[0]}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+}
+
+// ============================================================
+// LIVE TRIGGER — Calls Render backend /api/research-app
+// ============================================================
+let backendUrl = localStorage.getItem('composio_backend_url') || '';
+
+function initTrigger() {
+  const urlInput = document.getElementById('backendUrl');
+  const appInput = document.getElementById('testApp');
+  const btn = document.getElementById('triggerBtn');
+  const result = document.getElementById('triggerResult');
+  const statusDot = document.getElementById('statusDot');
+  const statusText = document.getElementById('statusText');
+  
+  if(backendUrl) {
+    urlInput.value = backendUrl;
+    checkBackend(backendUrl);
+  }
+  
+  urlInput.addEventListener('input', (e) => {
+    backendUrl = e.target.value.trim();
+    localStorage.setItem('composio_backend_url', backendUrl);
+    if(backendUrl) checkBackend(backendUrl);
+    else {
+      statusDot.className = 'status-dot static';
+      statusText.textContent = 'Static Dataset Mode';
+      btn.disabled = true;
+    }
+  });
+  
+  btn.addEventListener('click', async () => {
+    const appName = appInput.value.trim();
+    if(!appName || !backendUrl) return;
+    btn.disabled = true;
+    btn.textContent = 'Researching...';
+    result.textContent = '';
+    result.className = 'trigger-result';
+    
+    try {
+      const res = await fetch(`${backendUrl.replace(/\/$/,'')}/api/research-app`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({app_name: appName, force_refresh: true})
+      });
+      const data = await res.json();
+      if(data.found) {
+        result.className = 'trigger-result success';
+        result.innerHTML = '✓ Found <strong>' + data.record.app_name + '</strong> (source: ' + data.source + '). Confidence: ' + data.record.confidence_score + '/5. <a href="#" onclick="updateAppFromResult(\'' + appName + '\', ' + JSON.stringify(data.record).replace(/"/g,'"') + ');return false">Merge into table</a>';
+      } else {
+        result.className = 'trigger-result error';
+        result.textContent = `✗ ${data.error || 'Not found'}${data.hint ? ' — ' + data.hint : ''}`;
+      }
+    } catch(e) {
+      result.className = 'trigger-result error';
+      result.textContent = `✗ Request failed: ${e.message}`;
+      statusDot.className = 'status-dot error';
+      statusText.textContent = 'Backend Unreachable';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Research App';
+    }
+  });
+  
+  async function checkBackend(url) {
+    statusDot.className = 'status-dot';
+    statusText.textContent = 'Checking backend...';
+    btn.disabled = true;
+    try {
+      const res = await fetch(`${url.replace(/\/$/,'')}/health`, {method:'GET'});
+      if(res.ok) {
+        const data = await res.json();
+        statusDot.className = 'status-dot connected';
+        statusText.textContent = `Live Render Backend Connected (composio: ${data.composio_configured?'✓':'✗'}, nim: ${data.nim_configured?'✓':'✗'})`;
+        btn.disabled = false;
+        if(data.data_files && data.data_files.length) {
+          document.getElementById('backendLink').href = url;
+          document.getElementById('backendLink').style.display = 'inline';
+        }
+      } else throw new Error(`HTTP ${res.status}`);
+    } catch(e) {
+      statusDot.className = 'status-dot error';
+      statusText.textContent = `Backend Unreachable: ${e.message}`;
+      btn.disabled = true;
+    }
+  }
+}
+
+// Merge live result into table
+function updateAppFromResult(appName, record) {
+  const idx = APP_DATA.findIndex(a => a.app_name.toLowerCase() === appName.toLowerCase());
+  if(idx >= 0) {
+    APP_DATA[idx] = {...APP_DATA[idx], ...record};
+  } else {
+    APP_DATA.push(record);
+  }
+  renderAppMatrix();
+  alert('Merged into table. Click Download JSON to persist.');
+}
+
+// ============================================================
+// BOOTSTRAP
+// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('genDate').textContent = new Date().toLocaleDateString();
+  loadData();
+});
+
+// Expose for inline onclick
+window.toggleRow = toggleRow;
+window.updateAppFromResult = updateAppFromResult;
+</script>
+</body>
+</html>

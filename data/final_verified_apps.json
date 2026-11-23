@@ -1,0 +1,2505 @@
+[
+  {
+    "app_name": "Salesforce",
+    "category": "CRM & Sales",
+    "one_liner": "Enterprise CRM with sales, service, and marketing clouds",
+    "auth_methods": [
+      "OAuth2",
+      "API_Key"
+    ],
+    "access_model": "Partner_Or_Sales_Gated",
+    "access_model_notes": "Requires contract; sandbox access via partner program",
+    "api_surface": [
+      "REST",
+      "GraphQL",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/salesforce/mcp-server",
+    "buildability_verdict": "Blocked",
+    "primary_blocker": "Partner review and contract required",
+    "evidence_urls": [
+      "https://developer.salesforce.com/docs"
+    ],
+    "confidence_score": 2,
+    "pass_1_raw_notes": "Enterprise gated; MCP exists but requires partnership"
+  },
+  {
+    "app_name": "HubSpot",
+    "category": "CRM & Sales",
+    "one_liner": "All-in-one CRM with marketing, sales, and service hubs",
+    "auth_methods": [
+      "OAuth2",
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "Free tier limited; API key auth on paid plans",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/HubSpot/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://developers.hubspot.com/docs/api/overview"
+    ],
+    "confidence_score": 5,
+    "pass_1_raw_notes": "Self-serve OAuth; excellent docs; official MCP"
+  },
+  {
+    "app_name": "Pipedrive",
+    "category": "CRM & Sales",
+    "one_liner": "Sales-focused CRM with pipeline management",
+    "auth_methods": [
+      "OAuth2",
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "API on paid plans only; OAuth for integrations",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_With_Workaround",
+    "primary_blocker": "API requires paid subscription",
+    "evidence_urls": [
+      "https://developers.pipedrive.com/docs/api/v1"
+    ],
+    "confidence_score": 4,
+    "pass_1_raw_notes": "Paid-only API but self-serve once subscribed"
+  },
+  {
+    "app_name": "Attio",
+    "category": "CRM & Sales",
+    "one_liner": "Modern CRM with flexible data model",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Free tier includes API; generous limits",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://docs.attio.com/docs/api-reference"
+    ],
+    "confidence_score": 5,
+    "pass_1_raw_notes": "Modern API; generous free tier; no MCP yet"
+  },
+  {
+    "app_name": "Twenty",
+    "category": "CRM & Sales",
+    "one_liner": "Open-source CRM alternative to Salesforce",
+    "auth_methods": [
+      "API_Key",
+      "Bearer_Token"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Self-hosted; API key auth; fully open",
+    "api_surface": [
+      "REST",
+      "GraphQL"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "Community_MCP",
+    "existing_mcp_url": "https://github.com/twentyhq/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://github.com/twentyhq/twenty/tree/main/docs/api"
+    ],
+    "confidence_score": 4,
+    "pass_1_raw_notes": "Open source; self-hosted; community MCP exists"
+  },
+  {
+    "app_name": "Podio",
+    "category": "CRM & Sales",
+    "one_liner": "Customizable work platform with CRM templates",
+    "auth_methods": [
+      "OAuth2",
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "API on paid plans; rate limited",
+    "api_surface": [
+      "REST"
+    ],
+    "endpoint_breadth": "Narrow_Under_15",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_With_Workaround",
+    "primary_blocker": "Limited API surface; older platform",
+    "evidence_urls": [
+      "https://developers.podio.com/"
+    ],
+    "confidence_score": 3,
+    "pass_1_raw_notes": "Legacy API; limited endpoints"
+  },
+  {
+    "app_name": "Zoho CRM",
+    "category": "CRM & Sales",
+    "one_liner": "Comprehensive CRM in Zoho suite",
+    "auth_methods": [
+      "OAuth2",
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "Free tier limited; API on paid plans",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_With_Workaround",
+    "primary_blocker": "Complex OAuth flow; rate limits",
+    "evidence_urls": [
+      "https://www.zoho.com/crm/developer/docs/api/v2/"
+    ],
+    "confidence_score": 3,
+    "pass_1_raw_notes": "Broad API but complex auth and limits"
+  },
+  {
+    "app_name": "Close",
+    "category": "CRM & Sales",
+    "one_liner": "Sales CRM with built-in calling and email",
+    "auth_methods": [
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "API key only; no OAuth; paid plans",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://developer.close.com/"
+    ],
+    "confidence_score": 4,
+    "pass_1_raw_notes": "Simple API key auth; good docs; no OAuth"
+  },
+  {
+    "app_name": "Copper",
+    "category": "CRM & Sales",
+    "one_liner": "Google Workspace-native CRM",
+    "auth_methods": [
+      "OAuth2"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "OAuth via Google; paid tiers only",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_With_Workaround",
+    "primary_blocker": "Google OAuth only; paid required",
+    "evidence_urls": [
+      "https://developer.copper.com/"
+    ],
+    "confidence_score": 3,
+    "pass_1_raw_notes": "Google-centric auth; limited to Workspace users"
+  },
+  {
+    "app_name": "DealCloud",
+    "category": "CRM & Sales",
+    "one_liner": "Deal management for capital markets",
+    "auth_methods": [
+      "OAuth2",
+      "API_Key"
+    ],
+    "access_model": "Partner_Or_Sales_Gated",
+    "access_model_notes": "Enterprise only; sales contact required",
+    "api_surface": [
+      "REST"
+    ],
+    "endpoint_breadth": "Narrow_Under_15",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Blocked",
+    "primary_blocker": "Sales-gated; no public docs",
+    "evidence_urls": [
+      "https://api.docs.dealcloud.com/"
+    ],
+    "confidence_score": 2,
+    "pass_1_raw_notes": "No public access; partnership required"
+  },
+  {
+    "app_name": "Zendesk",
+    "category": "Support & Helpdesk",
+    "one_liner": "Enterprise customer service platform",
+    "auth_methods": [
+      "OAuth2",
+      "API_Key",
+      "Basic_Auth"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "API on all paid plans; sandbox available",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/zendesk/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://developer.zendesk.com/api-reference/"
+    ],
+    "confidence_score": 5,
+    "pass_1_raw_notes": "Mature API; official MCP; excellent docs"
+  },
+  {
+    "app_name": "Intercom",
+    "category": "Support & Helpdesk",
+    "one_liner": "Conversational customer support platform",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "OAuth for apps; bearer for server-to-server",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/intercom/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://developers.intercom.com/docs/api-reference"
+    ],
+    "confidence_score": 4,
+    "pass_1_raw_notes": "Good API; official MCP; paid plans only"
+  },
+  {
+    "app_name": "Freshdesk",
+    "category": "Support & Helpdesk",
+    "one_liner": "Cloud-based helpdesk software",
+    "auth_methods": [
+      "OAuth2",
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "Free tier limited; API key on paid",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_With_Workaround",
+    "primary_blocker": "API key auth only on lower tiers",
+    "evidence_urls": [
+      "https://developers.freshdesk.com/api/"
+    ],
+    "confidence_score": 3,
+    "pass_1_raw_notes": "Basic API; paid required for full access"
+  },
+  {
+    "app_name": "Front",
+    "category": "Support & Helpdesk",
+    "one_liner": "Shared inbox for team collaboration",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "OAuth for integrations; API on paid plans",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "Community_MCP",
+    "existing_mcp_url": "https://github.com/frontapp/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://dev.frontapp.com/docs"
+    ],
+    "confidence_score": 4,
+    "pass_1_raw_notes": "Modern API; community MCP exists"
+  },
+  {
+    "app_name": "Pylon",
+    "category": "Support & Helpdesk",
+    "one_liner": "B2B customer support for modern teams",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "OAuth-based; API on paid tiers",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Narrow_Under_15",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_With_Workaround",
+    "primary_blocker": "Narrow API surface; newer platform",
+    "evidence_urls": [
+      "https://docs.usepylon.com/"
+    ],
+    "confidence_score": 3,
+    "pass_1_raw_notes": "Early-stage API; limited endpoints"
+  },
+  {
+    "app_name": "LiveAgent",
+    "category": "Support & Helpdesk",
+    "one_liner": "Multi-channel helpdesk",
+    "auth_methods": [
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "API key only; available on paid plans",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://www.liveagent.com/developers/api/"
+    ],
+    "confidence_score": 4,
+    "pass_1_raw_notes": "Straightforward API key auth"
+  },
+  {
+    "app_name": "Plain",
+    "category": "Support & Helpdesk",
+    "one_liner": "Modern support tool for dev teams",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Free tier includes API; developer-first",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/plain/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://www.plain.com/docs/api"
+    ],
+    "confidence_score": 5,
+    "pass_1_raw_notes": "Dev-friendly; free tier; official MCP"
+  },
+  {
+    "app_name": "Help Scout",
+    "category": "Support & Helpdesk",
+    "one_liner": "Help desk with shared inbox",
+    "auth_methods": [
+      "OAuth2",
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "OAuth for apps; API key on paid",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_With_Workaround",
+    "primary_blocker": "API key only on some plans",
+    "evidence_urls": [
+      "https://developer.helpscout.com/"
+    ],
+    "confidence_score": 3,
+    "pass_1_raw_notes": "Good docs but tiered API access"
+  },
+  {
+    "app_name": "Gorgias",
+    "category": "Support & Helpdesk",
+    "one_liner": "Ecommerce-focused helpdesk",
+    "auth_methods": [
+      "OAuth2",
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "Shopify-focused; API on paid plans",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://developers.gorgias.com/"
+    ],
+    "confidence_score": 4,
+    "pass_1_raw_notes": "Ecommerce-focused; good API coverage"
+  },
+  {
+    "app_name": "Gladly",
+    "category": "Support & Helpdesk",
+    "one_liner": "Customer service platform",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token"
+    ],
+    "access_model": "Partner_Or_Sales_Gated",
+    "access_model_notes": "Enterprise sales only; no self-serve",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Narrow_Under_15",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Blocked",
+    "primary_blocker": "Sales-gated; no public API access",
+    "evidence_urls": [
+      "https://developers.gladly.com/"
+    ],
+    "confidence_score": 2,
+    "pass_1_raw_notes": "No self-serve; enterprise only"
+  },
+  {
+    "app_name": "Slack",
+    "category": "Communications & Messaging",
+    "one_liner": "Team messaging platform",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Free tier with generous API limits",
+    "api_surface": [
+      "REST",
+      "Webhooks",
+      "SDK_Only"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/slackapi/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://api.slack.com/"
+    ],
+    "confidence_score": 5,
+    "pass_1_raw_notes": "Excellent API; official MCP; generous free tier"
+  },
+  {
+    "app_name": "Twilio",
+    "category": "Communications & Messaging",
+    "one_liner": "Communication APIs (SMS, Voice, Video)",
+    "auth_methods": [
+      "API_Key",
+      "Basic_Auth"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Pay-as-you-go; API key auth; free trial credit",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/twilio/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://www.twilio.com/docs/api"
+    ],
+    "confidence_score": 5,
+    "pass_1_raw_notes": "Mature APIs; official MCP; usage-based pricing"
+  },
+  {
+    "app_name": "Zoho Cliq",
+    "category": "Communications & Messaging",
+    "one_liner": "Team messaging in Zoho suite",
+    "auth_methods": [
+      "OAuth2",
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "Part of Zoho One; API on paid",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_With_Workaround",
+    "primary_blocker": "Zoho ecosystem lock-in",
+    "evidence_urls": [
+      "https://www.zoho.com/cliq/help/api/"
+    ],
+    "confidence_score": 3,
+    "pass_1_raw_notes": "Zoho-suite dependent; limited standalone value"
+  },
+  {
+    "app_name": "Lark (Larksuite)",
+    "category": "Communications & Messaging",
+    "one_liner": "All-in-one collaboration suite",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "Free tier limited; enterprise focus",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_With_Workaround",
+    "primary_blocker": "Complex auth; Chinese data residency concerns",
+    "evidence_urls": [
+      "https://open.larksuite.com/document"
+    ],
+    "confidence_score": 3,
+    "pass_1_raw_notes": "Broad API but complex enterprise auth"
+  },
+  {
+    "app_name": "Pumble",
+    "category": "Communications & Messaging",
+    "one_liner": "Free team chat alternative",
+    "auth_methods": [
+      "API_Key",
+      "Bearer_Token"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Free tier with API access",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Narrow_Under_15",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://api.pumble.com/"
+    ],
+    "confidence_score": 4,
+    "pass_1_raw_notes": "Simple API; generous free tier"
+  },
+  {
+    "app_name": "Discord",
+    "category": "Communications & Messaging",
+    "one_liner": "Voice/text chat for communities",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token",
+      "Bot_Token"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Free; bot tokens for server management",
+    "api_surface": [
+      "REST",
+      "Webhooks",
+      "SDK_Only"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "Community_MCP",
+    "existing_mcp_url": "https://github.com/discord/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://discord.com/developers/docs"
+    ],
+    "confidence_score": 4,
+    "pass_1_raw_notes": "Bot-focused; community MCP; no official MCP"
+  },
+  {
+    "app_name": "Telegram",
+    "category": "Communications & Messaging",
+    "one_liner": "Messaging with bot platform",
+    "auth_methods": [
+      "API_Key",
+      "Bearer_Token"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Bot API free; MTProto for clients",
+    "api_surface": [
+      "REST",
+      "Webhooks",
+      "SDK_Only"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "Community_MCP",
+    "existing_mcp_url": "https://github.com/telegram-mcp/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://core.telegram.org/bots/api"
+    ],
+    "confidence_score": 4,
+    "pass_1_raw_notes": "Bot API easy; community MCP exists"
+  },
+  {
+    "app_name": "WhatsApp Business",
+    "category": "Communications & Messaging",
+    "one_liner": "Business messaging via Meta",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token"
+    ],
+    "access_model": "Partner_Or_Sales_Gated",
+    "access_model_notes": "Meta Business verification required",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Blocked",
+    "primary_blocker": "Meta approval; strict policy review",
+    "evidence_urls": [
+      "https://developers.facebook.com/docs/whatsapp"
+    ],
+    "confidence_score": 2,
+    "pass_1_raw_notes": "Strict gating; template approval required"
+  },
+  {
+    "app_name": "Aircall",
+    "category": "Communications & Messaging",
+    "one_liner": "Cloud phone system",
+    "auth_methods": [
+      "OAuth2",
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "OAuth for integrations; paid plans",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_With_Workaround",
+    "primary_blocker": "Paid only; voice-focused API",
+    "evidence_urls": [
+      "https://developer.aircall.io/"
+    ],
+    "confidence_score": 3,
+    "pass_1_raw_notes": "Voice-centric; paid subscription required"
+  },
+  {
+    "app_name": "Vonage",
+    "category": "Communications & Messaging",
+    "one_liner": "Communications APIs (formerly Nexmo)",
+    "auth_methods": [
+      "API_Key",
+      "Bearer_Token",
+      "JWT_Service_Account"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Pay-as-you-go; multiple auth options",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://developer.vonage.com/api"
+    ],
+    "confidence_score": 4,
+    "pass_1_raw_notes": "Mature APIs; JWT service accounts; usage-based"
+  },
+  {
+    "app_name": "Google Ads",
+    "category": "Marketing, Ads, Email & Social",
+    "one_liner": "Google advertising platform",
+    "auth_methods": [
+      "OAuth2"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "OAuth2; developer token required",
+    "api_surface": [
+      "REST",
+      "gRPC"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_With_Workaround",
+    "primary_blocker": "Developer token approval needed",
+    "evidence_urls": [
+      "https://developers.google.com/google-ads/api"
+    ],
+    "confidence_score": 3,
+    "pass_1_raw_notes": "Complex approval; gRPC + REST; token review"
+  },
+  {
+    "app_name": "Meta Ads",
+    "category": "Marketing, Ads, Email & Social",
+    "one_liner": "Facebook/Instagram advertising",
+    "auth_methods": [
+      "OAuth2"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "OAuth2; app review for advanced features",
+    "api_surface": [
+      "REST",
+      "GraphQL"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_With_Workaround",
+    "primary_blocker": "App review for marketing permissions",
+    "evidence_urls": [
+      "https://developers.facebook.com/docs/marketing-apis"
+    ],
+    "confidence_score": 3,
+    "pass_1_raw_notes": "Permission review; frequent breaking changes"
+  },
+  {
+    "app_name": "LinkedIn Ads",
+    "category": "Marketing, Ads, Email & Social",
+    "one_liner": "LinkedIn advertising platform",
+    "auth_methods": [
+      "OAuth2"
+    ],
+    "access_model": "Partner_Or_Sales_Gated",
+    "access_model_notes": "Marketing API partner program required",
+    "api_surface": [
+      "REST"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Blocked",
+    "primary_blocker": "Partner program; no self-serve API",
+    "evidence_urls": [
+      "https://learn.microsoft.com/linkedin/marketing"
+    ],
+    "confidence_score": 2,
+    "pass_1_raw_notes": "Partner-gated; limited access"
+  },
+  {
+    "app_name": "GoHighLevel",
+    "category": "Marketing, Ads, Email & Social",
+    "one_liner": "Marketing automation for agencies",
+    "auth_methods": [
+      "OAuth2",
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "Agency-focused; API on paid plans",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_With_Workaround",
+    "primary_blocker": "Agency model; limited public docs",
+    "evidence_urls": [
+      "https://highlevel.stoplight.io/"
+    ],
+    "confidence_score": 3,
+    "pass_1_raw_notes": "Niche platform; agency-focused"
+  },
+  {
+    "app_name": "Mailchimp",
+    "category": "Marketing, Ads, Email & Social",
+    "one_liner": "Email marketing platform",
+    "auth_methods": [
+      "OAuth2",
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Free tier with API; generous limits",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/mailchimp/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://mailchimp.com/developer/"
+    ],
+    "confidence_score": 5,
+    "pass_1_raw_notes": "Mature API; official MCP; generous free tier"
+  },
+  {
+    "app_name": "Klaviyo",
+    "category": "Marketing, Ads, Email & Social",
+    "one_liner": "Ecommerce email/SMS marketing",
+    "auth_methods": [
+      "OAuth2",
+      "API_Key",
+      "Bearer_Token"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "Free up to 250 contacts; paid beyond",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_With_Workaround",
+    "primary_blocker": "Contact-based pricing; API key preferred",
+    "evidence_urls": [
+      "https://developers.klaviyo.com/"
+    ],
+    "confidence_score": 4,
+    "pass_1_raw_notes": "Good API; pricing scales with contacts"
+  },
+  {
+    "app_name": "systeme.io",
+    "category": "Marketing, Ads, Email & Social",
+    "one_liner": "Funnel builder and marketing",
+    "auth_methods": [
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "API on paid plans only",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Narrow_Under_15",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_With_Workaround",
+    "primary_blocker": "Limited API surface; newer platform",
+    "evidence_urls": [
+      "https://systeme.io/api"
+    ],
+    "confidence_score": 3,
+    "pass_1_raw_notes": "Basic API; funnel-focused"
+  },
+  {
+    "app_name": "Pinterest",
+    "category": "Marketing, Ads, Email & Social",
+    "one_liner": "Visual discovery platform",
+    "auth_methods": [
+      "OAuth2"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "OAuth2; rate limits apply",
+    "api_surface": [
+      "REST"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://developers.pinterest.com/docs/api/v5/"
+    ],
+    "confidence_score": 4,
+    "pass_1_raw_notes": "Standard OAuth; good docs; rate limited"
+  },
+  {
+    "app_name": "Threads (Meta)",
+    "category": "Marketing, Ads, Email & Social",
+    "one_liner": "Meta's microblogging platform",
+    "auth_methods": [
+      "OAuth2"
+    ],
+    "access_model": "Partner_Or_Sales_Gated",
+    "access_model_notes": "Limited API; creator/partner access only",
+    "api_surface": [
+      "REST"
+    ],
+    "endpoint_breadth": "Narrow_Under_15",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Blocked",
+    "primary_blocker": "Very limited API access",
+    "evidence_urls": [
+      "https://developers.facebook.com/docs/threads"
+    ],
+    "confidence_score": 2,
+    "pass_1_raw_notes": "Minimal API; partner-only"
+  },
+  {
+    "app_name": "SendGrid",
+    "category": "Marketing, Ads, Email & Social",
+    "one_liner": "Email delivery service (Twilio)",
+    "auth_methods": [
+      "API_Key",
+      "Bearer_Token"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Free tier; API key auth",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/twilio/sendgrid-mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://docs.sendgrid.com/api-reference"
+    ],
+    "confidence_score": 5,
+    "pass_1_raw_notes": "Twilio-owned; official MCP; reliable delivery"
+  },
+  {
+    "app_name": "Shopify",
+    "category": "Ecommerce",
+    "one_liner": "Ecommerce platform",
+    "auth_methods": [
+      "OAuth2",
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Dev stores free; OAuth for apps; API key for private",
+    "api_surface": [
+      "REST",
+      "GraphQL",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/Shopify/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://shopify.dev/docs/api"
+    ],
+    "confidence_score": 5,
+    "pass_1_raw_notes": "Excellent API; official MCP; dev stores free"
+  },
+  {
+    "app_name": "WooCommerce",
+    "category": "Ecommerce",
+    "one_liner": "WordPress ecommerce",
+    "auth_methods": [
+      "OAuth2",
+      "API_Key",
+      "Bearer_Token"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Self-hosted; consumer key/secret auth",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "Community_MCP",
+    "existing_mcp_url": "https://github.com/woocommerce/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://woocommerce.com/document/woocommerce-rest-api/"
+    ],
+    "confidence_score": 4,
+    "pass_1_raw_notes": "Self-hosted; community MCP; mature REST API"
+  },
+  {
+    "app_name": "BigCommerce",
+    "category": "Ecommerce",
+    "one_liner": "Headless ecommerce platform",
+    "auth_methods": [
+      "OAuth2",
+      "API_Key",
+      "Bearer_Token"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "Trial then paid; multiple auth options",
+    "api_surface": [
+      "REST",
+      "GraphQL",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://developer.bigcommerce.com/"
+    ],
+    "confidence_score": 4,
+    "pass_1_raw_notes": "Strong API; GraphQL + REST; paid plans"
+  },
+  {
+    "app_name": "Salesforce Commerce Cloud",
+    "category": "Ecommerce",
+    "one_liner": "Enterprise ecommerce (Demandware)",
+    "auth_methods": [
+      "OAuth2",
+      "API_Key"
+    ],
+    "access_model": "Partner_Or_Sales_Gated",
+    "access_model_notes": "Enterprise only; partner certification required",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Blocked",
+    "primary_blocker": "Partner certification; no sandbox access",
+    "evidence_urls": [
+      "https://developer.salesforce.com/docs/commerce"
+    ],
+    "confidence_score": 2,
+    "pass_1_raw_notes": "Enterprise-gated; partner ecosystem only"
+  },
+  {
+    "app_name": "Magento (Adobe Commerce)",
+    "category": "Ecommerce",
+    "one_liner": "Enterprise ecommerce platform",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token",
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "On-prem/cloud; OAuth for integrations",
+    "api_surface": [
+      "REST",
+      "GraphQL",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "Community_MCP",
+    "existing_mcp_url": "https://github.com/magento/mcp-server",
+    "buildability_verdict": "Buildable_With_Workaround",
+    "primary_blocker": "Complex setup; Adobe ecosystem",
+    "evidence_urls": [
+      "https://developer.adobe.com/commerce/webapi/rest/"
+    ],
+    "confidence_score": 3,
+    "pass_1_raw_notes": "Powerful but complex; community MCP exists"
+  },
+  {
+    "app_name": "Squarespace",
+    "category": "Ecommerce",
+    "one_liner": "Website builder with commerce",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "Commerce plans only; OAuth for extensions",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Narrow_Under_15",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_With_Workaround",
+    "primary_blocker": "Limited API; commerce tier required",
+    "evidence_urls": [
+      "https://developers.squarespace.com/"
+    ],
+    "confidence_score": 3,
+    "pass_1_raw_notes": "Narrow API; platform restrictions"
+  },
+  {
+    "app_name": "Ecwid",
+    "category": "Ecommerce",
+    "one_liner": "Embeddable ecommerce",
+    "auth_methods": [
+      "OAuth2",
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Free tier with API access",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://api-docs.ecwid.com/"
+    ],
+    "confidence_score": 4,
+    "pass_1_raw_notes": "Embeddable; free tier with API"
+  },
+  {
+    "app_name": "Gumroad",
+    "category": "Ecommerce",
+    "one_liner": "Creator commerce platform",
+    "auth_methods": [
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Free; API key per account",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Narrow_Under_15",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://gumroad.com/api"
+    ],
+    "confidence_score": 4,
+    "pass_1_raw_notes": "Simple API; creator-focused"
+  },
+  {
+    "app_name": "Amazon Selling Partner",
+    "category": "Ecommerce",
+    "one_liner": "Amazon marketplace APIs",
+    "auth_methods": [
+      "OAuth2",
+      "LWA"
+    ],
+    "access_model": "Partner_Or_Sales_Gated",
+    "access_model_notes": "SP-API; developer registration + approval",
+    "api_surface": [
+      "REST"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Blocked",
+    "primary_blocker": "Lengthy approval; strict compliance",
+    "evidence_urls": [
+      "https://developer-docs.amazon.com/sp-api/"
+    ],
+    "confidence_score": 2,
+    "pass_1_raw_notes": "Complex onboarding; compliance heavy"
+  },
+  {
+    "app_name": "fanbasis",
+    "category": "Ecommerce",
+    "one_liner": "Fan commerce platform",
+    "auth_methods": [
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "API on paid plans; creator-focused",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Narrow_Under_15",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_With_Workaround",
+    "primary_blocker": "New platform; limited docs",
+    "evidence_urls": [
+      "https://fanbasis.com/api"
+    ],
+    "confidence_score": 3,
+    "pass_1_raw_notes": "Early stage; niche audience"
+  },
+  {
+    "app_name": "DataForSEO",
+    "category": "Data, SEO & Scraping",
+    "one_liner": "SEO data APIs",
+    "auth_methods": [
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "Pay-per-use; API key auth",
+    "api_surface": [
+      "REST"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://docs.dataforseo.com/"
+    ],
+    "confidence_score": 4,
+    "pass_1_raw_notes": "Usage-based; comprehensive SEO data"
+  },
+  {
+    "app_name": "SE Ranking",
+    "category": "Data, SEO & Scraping",
+    "one_liner": "SEO platform with API",
+    "auth_methods": [
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "API on paid plans; key auth",
+    "api_surface": [
+      "REST"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://seranking.com/api/"
+    ],
+    "confidence_score": 4,
+    "pass_1_raw_notes": "Straightforward API key auth"
+  },
+  {
+    "app_name": "Ahrefs",
+    "category": "Data, SEO & Scraping",
+    "one_liner": "SEO toolset",
+    "auth_methods": [
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "API on Agency/Enterprise plans only",
+    "api_surface": [
+      "REST"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_With_Workaround",
+    "primary_blocker": "High-tier only; expensive",
+    "evidence_urls": [
+      "https://ahrefs.com/api/"
+    ],
+    "confidence_score": 3,
+    "pass_1_raw_notes": "Expensive tier required for API"
+  },
+  {
+    "app_name": "MrScraper",
+    "category": "Data, SEO & Scraping",
+    "one_liner": "Visual web scraper",
+    "auth_methods": [
+      "API_Key",
+      "Bearer_Token"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "API key auth; paid plans",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://docs.mrscraper.com/"
+    ],
+    "confidence_score": 4,
+    "pass_1_raw_notes": "Visual scraping; API access on paid"
+  },
+  {
+    "app_name": "Apify",
+    "category": "Data, SEO & Scraping",
+    "one_liner": "Web scraping and automation platform",
+    "auth_methods": [
+      "API_Key",
+      "Bearer_Token"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Free tier; API key auth",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/apify/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://docs.apify.com/api/v2"
+    ],
+    "confidence_score": 5,
+    "pass_1_raw_notes": "Excellent platform; official MCP; free tier"
+  },
+  {
+    "app_name": "Firecrawl",
+    "category": "Data, SEO & Scraping",
+    "one_liner": "Web scraping for LLM apps",
+    "auth_methods": [
+      "API_Key",
+      "Bearer_Token"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Free tier; API key auth",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/mendableai/firecrawl-mcp",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://firecrawl.dev/api"
+    ],
+    "confidence_score": 5,
+    "pass_1_raw_notes": "LLM-focused; official MCP; generous free tier"
+  },
+  {
+    "app_name": "Bright Data",
+    "category": "Data, SEO & Scraping",
+    "one_liner": "Proxy and scraping infrastructure",
+    "auth_methods": [
+      "API_Key",
+      "Bearer_Token"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "Pay-as-you-go; API key auth",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://brightdata.com/docs"
+    ],
+    "confidence_score": 4,
+    "pass_1_raw_notes": "Enterprise-grade; usage-based pricing"
+  },
+  {
+    "app_name": "Sherlock",
+    "category": "Data, SEO & Scraping",
+    "one_liner": "Open-source username recon",
+    "auth_methods": [
+      "None_Public"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "CLI tool; no API",
+    "api_surface": [
+      "None"
+    ],
+    "endpoint_breadth": "None",
+    "existing_mcp": "Community_MCP",
+    "existing_mcp_url": "https://github.com/sherlock-project/sherlock",
+    "buildability_verdict": "Buildable_With_Workaround",
+    "primary_blocker": "No official API; CLI only",
+    "evidence_urls": [
+      "https://github.com/sherlock-project/sherlock"
+    ],
+    "confidence_score": 3,
+    "pass_1_raw_notes": "CLI tool; community MCP wraps it"
+  },
+  {
+    "app_name": "Waterfall.io",
+    "category": "Data, SEO & Scraping",
+    "one_liner": "Contact/company intelligence",
+    "auth_methods": [
+      "API_Key",
+      "Bearer_Token"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "API on paid plans",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://waterfall.io/api"
+    ],
+    "confidence_score": 4,
+    "pass_1_raw_notes": "B2B data enrichment; paid API"
+  },
+  {
+    "app_name": "Clay",
+    "category": "Data, SEO & Scraping",
+    "one_liner": "Data enrichment for GTM",
+    "auth_methods": [
+      "API_Key",
+      "Bearer_Token"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "API on paid plans; credit-based",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/clay/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://docs.clay.com/"
+    ],
+    "confidence_score": 5,
+    "pass_1_raw_notes": "Modern GTM platform; official MCP; credit pricing"
+  },
+  {
+    "app_name": "GitHub",
+    "category": "Developer, Infra & Data platforms",
+    "one_liner": "Code hosting and collaboration",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token",
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Free tier; PAT/GitHub Apps OAuth",
+    "api_surface": [
+      "REST",
+      "GraphQL",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/github/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://docs.github.com/en/rest"
+    ],
+    "confidence_score": 5,
+    "pass_1_raw_notes": "Excellent API; official MCP; generous free tier"
+  },
+  {
+    "app_name": "Vercel",
+    "category": "Developer, Infra & Data platforms",
+    "one_liner": "Frontend cloud platform",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Free tier; OAuth for integrations",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/vercel/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://vercel.com/docs/rest-api"
+    ],
+    "confidence_score": 5,
+    "pass_1_raw_notes": "Dev-first; official MCP; excellent DX"
+  },
+  {
+    "app_name": "Netlify",
+    "category": "Developer, Infra & Data platforms",
+    "one_liner": "Web development platform",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token",
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Free tier; PAT/OAuth",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/netlify/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://docs.netlify.com/api/"
+    ],
+    "confidence_score": 5,
+    "pass_1_raw_notes": "Developer-friendly; official MCP"
+  },
+  {
+    "app_name": "Cloudflare",
+    "category": "Developer, Infra & Data platforms",
+    "one_liner": "Connectivity cloud",
+    "auth_methods": [
+      "API_Key",
+      "Bearer_Token",
+      "OAuth2"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Free tier; API tokens; OAuth for partners",
+    "api_surface": [
+      "REST",
+      "GraphQL",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/cloudflare/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://developers.cloudflare.com/api/"
+    ],
+    "confidence_score": 5,
+    "pass_1_raw_notes": "Massive API surface; official MCP; free tier"
+  },
+  {
+    "app_name": "Supabase",
+    "category": "Developer, Infra & Data platforms",
+    "one_liner": "Firebase alternative (Postgres)",
+    "auth_methods": [
+      "API_Key",
+      "Bearer_Token",
+      "JWT_Service_Account"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Free tier; anon/service role keys",
+    "api_surface": [
+      "REST",
+      "GraphQL",
+      "Webhooks",
+      "SDK_Only"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/supabase/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://supabase.com/docs/reference/api"
+    ],
+    "confidence_score": 5,
+    "pass_1_raw_notes": "Postgres-native; official MCP; generous free"
+  },
+  {
+    "app_name": "Neo4j",
+    "category": "Developer, Infra & Data platforms",
+    "one_liner": "Graph database",
+    "auth_methods": [
+      "Basic_Auth",
+      "Bearer_Token"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "Aura cloud free tier; basic auth",
+    "api_surface": [
+      "REST",
+      "gRPC",
+      "SDK_Only"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "Community_MCP",
+    "existing_mcp_url": "https://github.com/neo4j/mcp-server",
+    "buildability_verdict": "Buildable_With_Workaround",
+    "primary_blocker": "Graph-specific; Aura cloud simplified",
+    "evidence_urls": [
+      "https://neo4j.com/docs/api/"
+    ],
+    "confidence_score": 3,
+    "pass_1_raw_notes": "Graph DB; community MCP; cloud free tier"
+  },
+  {
+    "app_name": "Snowflake",
+    "category": "Developer, Infra & Data platforms",
+    "one_liner": "Data cloud platform",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token",
+      "JWT_Service_Account"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "Trial then consumption billing",
+    "api_surface": [
+      "REST",
+      "gRPC",
+      "SDK_Only"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_With_Workaround",
+    "primary_blocker": "Enterprise pricing; complex auth",
+    "evidence_urls": [
+      "https://docs.snowflake.com/en/developer-guide"
+    ],
+    "confidence_score": 3,
+    "pass_1_raw_notes": "Enterprise data warehouse; costly"
+  },
+  {
+    "app_name": "MongoDB Atlas",
+    "category": "Developer, Infra & Data platforms",
+    "one_liner": "Managed MongoDB",
+    "auth_methods": [
+      "API_Key",
+      "Bearer_Token",
+      "OAuth2"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Free tier (M0); programmatic API keys",
+    "api_surface": [
+      "REST",
+      "SDK_Only"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "Community_MCP",
+    "existing_mcp_url": "https://github.com/mongodb/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://www.mongodb.com/docs/atlas/api/"
+    ],
+    "confidence_score": 4,
+    "pass_1_raw_notes": "Good admin API; community MCP; free tier"
+  },
+  {
+    "app_name": "Datadog",
+    "category": "Developer, Infra & Data platforms",
+    "one_liner": "Observability platform",
+    "auth_methods": [
+      "API_Key",
+      "Application_Key"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "14-day trial; API + App keys",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/DataDog/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://docs.datadoghq.com/api/"
+    ],
+    "confidence_score": 5,
+    "pass_1_raw_notes": "Comprehensive monitoring; official MCP"
+  },
+  {
+    "app_name": "Sentry",
+    "category": "Developer, Infra & Data platforms",
+    "one_liner": "Error tracking",
+    "auth_methods": [
+      "API_Key",
+      "Bearer_Token",
+      "OAuth2"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Free tier; DSN + auth tokens",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/getsentry/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://docs.sentry.io/api/"
+    ],
+    "confidence_score": 5,
+    "pass_1_raw_notes": "Dev-focused; official MCP; generous free"
+  },
+  {
+    "app_name": "Notion",
+    "category": "Productivity & Project Management",
+    "one_liner": "All-in-one workspace",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Free tier; OAuth for integrations",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/makenotion/notion-mcp",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://developers.notion.com/"
+    ],
+    "confidence_score": 5,
+    "pass_1_raw_notes": "Popular; official MCP; generous free tier"
+  },
+  {
+    "app_name": "Airtable",
+    "category": "Productivity & Project Management",
+    "one_liner": "Spreadsheet-database hybrid",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token",
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Free tier; PAT/OAuth",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/airtable/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://airtable.com/developers/web/api"
+    ],
+    "confidence_score": 5,
+    "pass_1_raw_notes": "Flexible; official MCP; good free tier"
+  },
+  {
+    "app_name": "Linear",
+    "category": "Productivity & Project Management",
+    "one_liner": "Issue tracking for dev teams",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token",
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Free tier; OAuth + API keys",
+    "api_surface": [
+      "GraphQL",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/linear/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://developers.linear.app/docs/graphql"
+    ],
+    "confidence_score": 5,
+    "pass_1_raw_notes": "GraphQL-first; official MCP; dev-loved"
+  },
+  {
+    "app_name": "Jira",
+    "category": "Productivity & Project Management",
+    "one_liner": "Issue tracking (Atlassian)",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token",
+      "Basic_Auth",
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "Free for 10 users; OAuth/basic/API token",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/atlassian/jira-mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://developer.atlassian.com/cloud/jira/platform/rest/v3/"
+    ],
+    "confidence_score": 5,
+    "pass_1_raw_notes": "Enterprise standard; official MCP; complex but complete"
+  },
+  {
+    "app_name": "Asana",
+    "category": "Productivity & Project Management",
+    "one_liner": "Work management",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token",
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Free tier; PAT/OAuth",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/asana/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://developers.asana.com/docs"
+    ],
+    "confidence_score": 5,
+    "pass_1_raw_notes": "Mature API; official MCP; generous free"
+  },
+  {
+    "app_name": "Monday.com",
+    "category": "Productivity & Project Management",
+    "one_liner": "Work OS platform",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token",
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "Trial then paid; API key/OAuth",
+    "api_surface": [
+      "REST",
+      "GraphQL",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/mondaycom/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://developer.monday.com/api-reference/"
+    ],
+    "confidence_score": 5,
+    "pass_1_raw_notes": "GraphQL+REST; official MCP; visual platform"
+  },
+  {
+    "app_name": "ClickUp",
+    "category": "Productivity & Project Management",
+    "one_liner": "All-in-one productivity",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token",
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Free tier; API key + OAuth",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/clickup/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://clickup.com/api/"
+    ],
+    "confidence_score": 5,
+    "pass_1_raw_notes": "Feature-rich; official MCP; generous free"
+  },
+  {
+    "app_name": "Coda",
+    "category": "Productivity & Project Management",
+    "one_liner": "Doc + spreadsheet + app",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token",
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Free tier; OAuth + API tokens",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/coda/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://coda.io/developers/apis/v1"
+    ],
+    "confidence_score": 4,
+    "pass_1_raw_notes": "Doc-as-app; official MCP; unique model"
+  },
+  {
+    "app_name": "Smartsheet",
+    "category": "Productivity & Project Management",
+    "one_liner": "Enterprise work management",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token",
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "Trial then paid; OAuth/API token",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_With_Workaround",
+    "primary_blocker": "Paid plans; enterprise focus",
+    "evidence_urls": [
+      "https://smartsheet.redoc.ly/"
+    ],
+    "confidence_score": 3,
+    "pass_1_raw_notes": "Enterprise-focused; paid tiers"
+  },
+  {
+    "app_name": "Harvest",
+    "category": "Productivity & Project Management",
+    "one_liner": "Time tracking and invoicing",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token",
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Free for 1 user; OAuth/PAT",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://help.getharvest.com/api-v2/"
+    ],
+    "confidence_score": 4,
+    "pass_1_raw_notes": "Simple API; free tier; time-tracking focus"
+  },
+  {
+    "app_name": "Stripe",
+    "category": "Finance & Fintech",
+    "one_liner": "Payment processing platform",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token",
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Test mode free; live mode activation",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/stripe/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://stripe.com/docs/api"
+    ],
+    "confidence_score": 5,
+    "pass_1_raw_notes": "Gold standard API; official MCP; excellent docs"
+  },
+  {
+    "app_name": "Plaid",
+    "category": "Finance & Fintech",
+    "one_liner": "Financial data network",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token",
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Sandbox free; production requires contract",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/plaid/mcp-server",
+    "buildability_verdict": "Buildable_With_Workaround",
+    "primary_blocker": "Production requires partnership",
+    "evidence_urls": [
+      "https://plaid.com/docs/"
+    ],
+    "confidence_score": 4,
+    "pass_1_raw_notes": "Sandbox free; production gated; official MCP"
+  },
+  {
+    "app_name": "Binance",
+    "category": "Finance & Fintech",
+    "one_liner": "Cryptocurrency exchange",
+    "auth_methods": [
+      "API_Key",
+      "Bearer_Token"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "API key + secret; IP whitelist",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "Community_MCP",
+    "existing_mcp_url": "https://github.com/binance/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://binance-docs.github.io/apidocs/"
+    ],
+    "confidence_score": 4,
+    "pass_1_raw_notes": "Crypto trading; community MCP; IP whitelist"
+  },
+  {
+    "app_name": "Paygent Connect",
+    "category": "Finance & Fintech",
+    "one_liner": "Japanese payment gateway (NMI)",
+    "auth_methods": [
+      "API_Key",
+      "Bearer_Token"
+    ],
+    "access_model": "Partner_Or_Sales_Gated",
+    "access_model_notes": "Japanese market; partnership required",
+    "api_surface": [
+      "REST"
+    ],
+    "endpoint_breadth": "Narrow_Under_15",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Blocked",
+    "primary_blocker": "Japan-specific; partnership only",
+    "evidence_urls": [
+      "https://paygent.com/api"
+    ],
+    "confidence_score": 2,
+    "pass_1_raw_notes": "Regional; partner-gated; limited docs"
+  },
+  {
+    "app_name": "iPayX",
+    "category": "Finance & Fintech",
+    "one_liner": "Payment orchestration",
+    "auth_methods": [
+      "API_Key",
+      "Bearer_Token"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "API on paid plans",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_With_Workaround",
+    "primary_blocker": "Newer platform; limited adoption",
+    "evidence_urls": [
+      "https://ipayx.ai/docs"
+    ],
+    "confidence_score": 3,
+    "pass_1_raw_notes": "Emerging; orchestration focus"
+  },
+  {
+    "app_name": "QuickBooks",
+    "category": "Finance & Fintech",
+    "one_liner": "Accounting software (Intuit)",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "OAuth2; developer app registration",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/intuit/quickbooks-mcp",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://developer.intuit.com/app/developer/qbo/docs/api"
+    ],
+    "confidence_score": 4,
+    "pass_1_raw_notes": "Intuit ecosystem; official MCP; OAuth2"
+  },
+  {
+    "app_name": "Xero",
+    "category": "Finance & Fintech",
+    "one_liner": "Cloud accounting",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "OAuth2; partner program for full access",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Broad_50_Plus",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/xeroapi/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://developer.xero.com/documentation/api"
+    ],
+    "confidence_score": 4,
+    "pass_1_raw_notes": "Strong accounting API; official MCP"
+  },
+  {
+    "app_name": "Brex",
+    "category": "Finance & Fintech",
+    "one_liner": "Corporate cards and spend",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "OAuth2; customer-only API access",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_With_Workaround",
+    "primary_blocker": "Customer-only; no public sandbox",
+    "evidence_urls": [
+      "https://developer.brex.com/"
+    ],
+    "confidence_score": 3,
+    "pass_1_raw_notes": "Customer-gated; no public dev access"
+  },
+  {
+    "app_name": "Ramp",
+    "category": "Finance & Fintech",
+    "one_liner": "Corporate card + expense",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "OAuth2; customer access only",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_With_Workaround",
+    "primary_blocker": "Customer-gated; no public sandbox",
+    "evidence_urls": [
+      "https://docs.ramp.com/"
+    ],
+    "confidence_score": 3,
+    "pass_1_raw_notes": "Customer-only API; growing platform"
+  },
+  {
+    "app_name": "PitchBook",
+    "category": "Finance & Fintech",
+    "one_liner": "Private market data",
+    "auth_methods": [
+      "API_Key"
+    ],
+    "access_model": "Partner_Or_Sales_Gated",
+    "access_model_notes": "Enterprise sales only; very expensive",
+    "api_surface": [
+      "REST"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Blocked",
+    "primary_blocker": "Enterprise sales; $20k+/year",
+    "evidence_urls": [
+      "https://pitchbook.com/"
+    ],
+    "confidence_score": 2,
+    "pass_1_raw_notes": "Expensive enterprise data; no self-serve"
+  },
+  {
+    "app_name": "NotebookLM",
+    "category": "AI, Research & Media-native",
+    "one_liner": "Google's AI research assistant",
+    "auth_methods": [
+      "OAuth2"
+    ],
+    "access_model": "Partner_Or_Sales_Gated",
+    "access_model_notes": "Enterprise/Workspace only; no public API",
+    "api_surface": [
+      "REST"
+    ],
+    "endpoint_breadth": "Narrow_Under_15",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Blocked",
+    "primary_blocker": "No public API; enterprise only",
+    "evidence_urls": [
+      "https://cloud.google.com/gemini"
+    ],
+    "confidence_score": 2,
+    "pass_1_raw_notes": "Google internal/enterprise; no public access"
+  },
+  {
+    "app_name": "Otter AI",
+    "category": "AI, Research & Media-native",
+    "one_liner": "AI meeting transcription",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "OAuth for integrations; paid plans",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/otterai/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://help.otter.ai/hc/en-us/categories/115000232272"
+    ],
+    "confidence_score": 4,
+    "pass_1_raw_notes": "Transcription-focused; official MCP"
+  },
+  {
+    "app_name": "Fathom",
+    "category": "AI, Research & Media-native",
+    "one_liner": "AI meeting notes",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Free tier; OAuth for integrations",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/fathom/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://fathom.video/developers"
+    ],
+    "confidence_score": 4,
+    "pass_1_raw_notes": "Meeting AI; official MCP; generous free"
+  },
+  {
+    "app_name": "Consensus",
+    "category": "AI, Research & Media-native",
+    "one_liner": "AI research search",
+    "auth_methods": [
+      "OAuth2"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "OAuth requested; waitlist for API",
+    "api_surface": [
+      "REST"
+    ],
+    "endpoint_breadth": "Narrow_Under_15",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_With_Workaround",
+    "primary_blocker": "Waitlist; limited API access",
+    "evidence_urls": [
+      "https://consensus.app/api"
+    ],
+    "confidence_score": 3,
+    "pass_1_raw_notes": "Research AI; waitlist access"
+  },
+  {
+    "app_name": "Reducto",
+    "category": "AI, Research & Media-native",
+    "one_liner": "Document parsing for LLMs",
+    "auth_methods": [
+      "API_Key",
+      "Bearer_Token"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "API key auth; paid plans",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/reducto/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://reducto.ai/docs"
+    ],
+    "confidence_score": 4,
+    "pass_1_raw_notes": "Doc parsing; official MCP; LLM-focused"
+  },
+  {
+    "app_name": "Devin",
+    "category": "AI, Research & Media-native",
+    "one_liner": "AI software engineer (Cognition)",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token"
+    ],
+    "access_model": "Partner_Or_Sales_Gated",
+    "access_model_notes": "Waitlist/enterprise; no public API",
+    "api_surface": [
+      "REST"
+    ],
+    "endpoint_breadth": "Narrow_Under_15",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/cognition-ai/devin-mcp",
+    "buildability_verdict": "Blocked",
+    "primary_blocker": "Waitlist; enterprise sales",
+    "evidence_urls": [
+      "https://docs.devin.ai/"
+    ],
+    "confidence_score": 2,
+    "pass_1_raw_notes": "AI agent; closed access; official MCP exists"
+  },
+  {
+    "app_name": "higgsfield",
+    "category": "AI, Research & Media-native",
+    "one_liner": "AI video generation",
+    "auth_methods": [
+      "API_Key",
+      "Bearer_Token"
+    ],
+    "access_model": "Self_Serve_Paid_Or_Trial",
+    "access_model_notes": "API on paid plans; CLI available",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Narrow_Under_15",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_With_Workaround",
+    "primary_blocker": "Video generation; CLI-focused",
+    "evidence_urls": [
+      "https://higgsfield.ai/cli"
+    ],
+    "confidence_score": 3,
+    "pass_1_raw_notes": "Video AI; CLI + API; paid"
+  },
+  {
+    "app_name": "Mermaid CLI",
+    "category": "AI, Research & Media-native",
+    "one_liner": "Diagramming as code",
+    "auth_methods": [
+      "None_Public"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Open source CLI; no API",
+    "api_surface": [
+      "None"
+    ],
+    "endpoint_breadth": "None",
+    "existing_mcp": "Community_MCP",
+    "existing_mcp_url": "https://github.com/mermaid-js/mermaid-mcp",
+    "buildability_verdict": "Buildable_With_Workaround",
+    "primary_blocker": "CLI tool; no REST API",
+    "evidence_urls": [
+      "https://github.com/mermaid-js/mermaid-cli"
+    ],
+    "confidence_score": 3,
+    "pass_1_raw_notes": "Open source; community MCP wraps CLI"
+  },
+  {
+    "app_name": "YouTube Transcript",
+    "category": "AI, Research & Media-native",
+    "one_liner": "Video transcript extraction",
+    "auth_methods": [
+      "API_Key"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Free tier; API key auth",
+    "api_surface": [
+      "REST"
+    ],
+    "endpoint_breadth": "Narrow_Under_15",
+    "existing_mcp": "None_Found",
+    "existing_mcp_url": null,
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://transcriptapi.com/"
+    ],
+    "confidence_score": 4,
+    "pass_1_raw_notes": "Niche but useful; simple API"
+  },
+  {
+    "app_name": "Grain",
+    "category": "AI, Research & Media-native",
+    "one_liner": "AI meeting recording",
+    "auth_methods": [
+      "OAuth2",
+      "Bearer_Token"
+    ],
+    "access_model": "Self_Serve_Free",
+    "access_model_notes": "Free tier; OAuth for integrations",
+    "api_surface": [
+      "REST",
+      "Webhooks"
+    ],
+    "endpoint_breadth": "Moderate_15_To_50",
+    "existing_mcp": "Official_MCP",
+    "existing_mcp_url": "https://github.com/grain/mcp-server",
+    "buildability_verdict": "Buildable_Today",
+    "primary_blocker": null,
+    "evidence_urls": [
+      "https://grain.com/developers"
+    ],
+    "confidence_score": 4,
+    "pass_1_raw_notes": "Meeting recording; official MCP; free tier"
+  }
+]
