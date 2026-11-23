@@ -3,16 +3,33 @@
   "builds": [
     {
       "src": "index.html",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "."
-      }
+      "use": "@vercel/static"
+    },
+    {
+      "src": "entry.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "data/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "assets/**",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
       "src": "/data/(.*)",
       "dest": "/data/$1"
+    },
+    {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
+    },
+    {
+      "src": "/entry.html",
+      "dest": "/entry.html"
     },
     {
       "src": "/(.*)",

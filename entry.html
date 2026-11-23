@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Composio 100 — Entry</title>
+<style>
+:root{
+  --fg:#ffffff;
+  --accent:#00f5c3;
+  --muted:#aeb6c4;
+  --line:rgba(255,255,255,.28);
+  --font-sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --font-mono:ui-monospace,"IBM Plex Mono","SFMono-Regular",Menlo,Consolas,monospace;
+  --pad:clamp(16px,2.4vw,40px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;background:#05070a;color:var(--fg);font-family:var(--font-sans)}
+body{cursor:default}
+
+/* ================= MEDIA STAGE ================= */
+#stage{position:fixed;inset:0;width:100vw;height:100vh;overflow:hidden;z-index:0;background:#05070a;isolation:isolate}
+#bg-video,#bg-image,#bg-mesh{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .7s ease, transform 8s ease}
+#bg-video{opacity:0;transform:scale(1.02)}
+#bg-image{opacity:0;transform:scale(1.02)}
+#bg-mesh{opacity:1}
+#stage.playing #bg-video,#stage.playing #bg-image{opacity:1;transform:scale(1)}
+#stage.playing #bg-mesh{opacity:0}
+
+/* Animated fallback mesh — looks intentional, never broken */
+#bg-mesh{
+  background:
+    radial-gradient(60% 70% at 18% 22%, #0d3b34 0%, transparent 60%),
+    radial-gradient(55% 65% at 82% 12%, #131a2e 0%, transparent 62%),
+    radial-gradient(70% 80% at 70% 88%, #1a1230 0%, transparent 60%),
+    radial-gradient(40% 50% at 30% 80%, #00383a 0%, transparent 65%),
+    linear-gradient(135deg,#070a0f 0%,#0a0e16 100%);
+  animation:meshDrift 24s ease-in-out infinite alternate;
+}
+@keyframes meshDrift{
+  0%{transform:scale(1.05) translate3d(0,0,0)}
+  100%{transform:scale(1.15) translate3d(-2%,-1.5%,0)}
+}
+
+/* ================= BLEND LAYER ================= */
+/* All foreground type lives in ONE difference-blended layer so it inverts
+   predictably against whatever the media shows beneath it. */
+.blend{position:fixed;inset:0;z-index:3;mix-blend-mode:difference;color:#fff;pointer-events:none}
+.blend a,.blend button{pointer-events:auto}
+
+/* ================= TOP BAR ================= */
+.topbar{
+  position:fixed;top:0;left:0;width:100%;z-index:4;
+  display:flex;justify-content:space-between;align-items:flex-start;
+  padding:var(--pad);font-family:var(--font-mono);
+}
+.topbar .brand{font-size:clamp(.8rem,1vw,1rem);font-weight:700;letter-spacing:.32em;text-transform:uppercase;line-height:1.3}
+.topbar .brand small{display:block;font-weight:400;letter-spacing:.18em;font-size:.62em;color:#fff;opacity:.75;margin-top:4px}
+.nav{display:flex;gap:clamp(10px,1.6vw,26px);flex-wrap:wrap;justify-content:flex-end}
+.nav a{
+  color:#fff;text-decoration:none;font-size:clamp(.62rem,.85vw,.78rem);letter-spacing:.14em;text-transform:uppercase;
+  opacity:.7;transition:opacity .2s ease;
+}
+.nav a:hover{opacity:1}
+
+/* ================= CENTER HERO ================= */
+.hero{
+  position:fixed;inset:0;z-index:3;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;pointer-events:none;
+  padding:0 var(--pad);
+}
+.hero .kicker{
+  font-family:var(--font-mono);font-size:clamp(.6rem,.9vw,.8rem);letter-spacing:.5em;text-transform:uppercase;
+  margin-bottom:clamp(14px,2vw,26px);opacity:.9;
+}
+.hero .display{
+  font-family:var(--font-sans);font-weight:800;letter-spacing:-.03em;line-height:.92;
+  font-size:clamp(3.4rem,13vw,12rem);text-transform:uppercase;
+}
+.hero .display .thin{font-weight:200}
+.hero .rule{width:clamp(60px,8vw,120px);height:1px;background:#fff;margin:clamp(20px,3vw,36px) auto;opacity:.6}
+.hero .sub{
+  font-family:var(--font-mono);font-size:clamp(.62rem,.95vw,.85rem);letter-spacing:.28em;text-transform:uppercase;opacity:.85;
+  max-width:36ch;line-height:1.7;
+}
+.hero .actions{display:flex;gap:clamp(10px,1.4vw,18px);margin-top:clamp(24px,3.4vw,44px);flex-wrap:wrap;justify-content:center;pointer-events:auto}
+.btn{
+  font-family:var(--font-mono);font-size:clamp(.66rem,.9vw,.8rem);letter-spacing:.16em;text-transform:uppercase;
+  padding:14px 26px;border:1px solid #fff;background:transparent;color:#fff;cursor:pointer;
+  transition:letter-spacing .25s ease, padding .25s ease;text-decoration:none;display:inline-flex;align-items:center;gap:10px;
+}
+.btn:hover{letter-spacing:.28em;padding-left:32px;padding-right:32px}
+.btn.solid{background:#fff;color:#000;mix-blend-mode:normal}
+.btn.solid:hover{background:var(--accent);border-color:var(--accent);color:#000}
+
+/* ================= BOTTOM BAR / FILMSTRIP ================= */
+.bottom{
+  position:fixed;bottom:0;left:0;width:100%;z-index:4;
+  display:flex;flex-direction:column;gap:10px;
+  padding:var(--pad);
+  font-family:var(--font-mono);
+}
+.bottom .readout{
+  display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;
+  font-size:clamp(.56rem,.8vw,.72rem);letter-spacing:.14em;text-transform:uppercase;
+}
+.bottom .readout .left{display:flex;gap:clamp(12px,2vw,32px);flex-wrap:wrap}
+.bottom .readout .status{display:inline-flex;align-items:center;gap:8px}
+.bottom .readout .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 var(--accent);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(0,245,195,.6)}70%{box-shadow:0 0 0 8px rgba(0,245,195,0)}100%{box-shadow:0 0 0 0 rgba(0,245,195,0)}}
+.timecode{font-variant-numeric:tabular-nums;letter-spacing:.2em;font-size:clamp(.7rem,1vw,.9rem)}
+
+/* Filmstrip */
+.filmstrip{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+.filmstrip::-webkit-scrollbar{display:none}
+.slide{
+  position:relative;flex:0 0 auto;width:clamp(84px,9vw,132px);cursor:pointer;
+  border:1px solid transparent;transition:border-color .25s ease, transform .25s ease;opacity:.65;
+}
+.slide img{width:100%;height:clamp(48px,5.5vw,74px);object-fit:cover;display:block;filter:grayscale(.2)}
+.slide .idx{position:absolute;left:4px;top:3px;font-size:.55rem;letter-spacing:.1em;text-shadow:0 1px 3px #000}
+.slide .mode{position:absolute;right:4px;bottom:3px;font-size:.5rem;letter-spacing:.1em;text-shadow:0 1px 3px #000}
+.slide:hover{opacity:.9;transform:translateY(-2px)}
+.slide.active{border-color:#fff;opacity:1}
+
+/* Media mode toggle */
+.mediatoggle{display:flex;gap:0;border:1px solid var(--line)}
+.mediatoggle button{
+  font-family:var(--font-mono);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;
+  padding:5px 10px;background:transparent;color:#fff;border:none;cursor:pointer;opacity:.6;transition:.2s;
+}
+.mediatoggle button.active{opacity:1;background:#fff;color:#000}
+
+/* Corner markers */
+.corner{position:fixed;width:16px;height:16px;border:1px solid #fff;opacity:.5;pointer-events:none;z-index:4}
+.corner.tl{top:calc(var(--pad) + 2px);left:calc(var(--pad) + 2px);border-right:none;border-bottom:none}
+.corner.tr{top:calc(var(--pad) + 2px);right:calc(var(--pad) + 2px);border-left:none;border-bottom:none}
+.corner.bl{bottom:calc(var(--pad) + 2px);left:calc(var(--pad) + 2px);border-right:none;border-top:none}
+.corner.br{bottom:calc(var(--pad) + 2px);right:calc(var(--pad) + 2px);border-left:none;border-top:none}
+
+/* Reveal animation */
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.topbar,.hero,.bottom{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.hero{animation-delay:.15s}
+.bottom{animation-delay:.3s}
+
+@media (max-width:720px){
+  .hero .display{font-size:clamp(2.6rem,15vw,5rem)}
+  .bottom .readout{font-size:.56rem}
+  .filmstrip .slide{width:74px}
+  .slide img{height:42px}
+}
+@media (prefers-reduced-motion:reduce){
+  #bg-mesh{animation:none}
+  .topbar,.hero,.bottom{animation:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= MEDIA STAGE ================= -->
+<div id="stage">
+  <div id="bg-mesh"></div>
+  <img id="bg-image" alt="" aria-hidden="true">
+  <video id="bg-video" autoplay muted loop playsinline aria-hidden="true"></video>
+</div>
+
+<!-- ================= BLEND FOREGROUND (mix-blend-mode: difference) ================= -->
+<div class="blend">
+  <!-- Top bar -->
+  <header class="topbar">
+    <div class="brand">COMPOSIO<small>100-App Product Ops</small></div>
+    <nav class="nav">
+      <a href="./index.html">[ CASE STUDY ]</a>
+      <a href="./index.html#matrix">[ MATRIX ]</a>
+      <a href="./index.html#accuracy">[ VERIFICATION ]</a>
+      <a href="https://github.com/Dark-knight232/composios" target="_blank" rel="noopener">[ REPO ]</a>
+    </nav>
+  </header>
+
+  <!-- Center hero -->
+  <div class="hero">
+    <div class="kicker">AI Product Ops · Hours 4.5–6.5</div>
+    <h1 class="display">COMPOSIO <span class="thin">100</span></h1>
+    <div class="rule"></div>
+    <p class="sub">State of Tooling — a verified map of developer APIs, auth patterns &amp; MCP readiness across 100 apps.</p>
+    <div class="actions">
+      <a class="btn solid" href="./index.html">Enter Case Study →</a>
+      <a class="btn" href="./index.html#matrix">Jump to Matrix</a>
+    </div>
+  </div>
+
+  <!-- Bottom bar -->
+  <footer class="bottom">
+    <div class="readout">
+      <div class="left">
+        <span class="status"><span class="dot"></span> LIVE</span>
+        <span>100 APPS · PASS 1 + 2 + AUDIT</span>
+        <span class="mediatoggle" id="mediatoggle">
+          <button data-mode="mesh" class="active">MESH</button>
+          <button data-mode="image">IMAGE</button>
+          <button data-mode="video">VIDEO</button>
+        </span>
+      </div>
+      <div class="timecode" id="timecode">00:00:00</div>
+    </div>
+    <div class="filmstrip" id="filmstrip"></div>
+  </footer>
+</div>
+
+<!-- Corner markers -->
+<span class="corner tl"></span><span class="corner tr"></span>
+<span class="corner bl"></span><span class="corner br"></span>
+
+<script>
+/* ============ SCENE DEFINITIONS (placeholder asset slots) ============ */
+const SCENES = [
+  { id:1, label:'Dev Tools',  mode:'image', thumb:'./assets/entry-thumb-1.jpg', src:'./assets/entry-thumb-1.jpg' },
+  { id:2, label:'Fintech',    mode:'image', thumb:'./assets/entry-thumb-2.jpg', src:'./assets/entry-thumb-2.jpg' },
+  { id:3, label:'CRM',        mode:'image', thumb:'./assets/entry-thumb-3.jpg', src:'./assets/entry-thumb-3.jpg' },
+  { id:4, label:'Marketing',  mode:'image', thumb:'./assets/entry-thumb-4.jpg', src:'./assets/entry-thumb-4.jpg' },
+  { id:5, label:'AI / Media', mode:'image', thumb:'./assets/entry-thumb-5.jpg', src:'./assets/entry-thumb-5.jpg' },
+  { id:6, label:'Video Reel', mode:'video', thumb:'./assets/entry-thumb-1.jpg', src:'./assets/entry-bg.mp4' }
+];
+
+const stage      = document.getElementById('stage');
+const bgImage    = document.getElementById('bg-image');
+const bgVideo    = document.getElementById('bg-video');
+const filmstrip  = document.getElementById('filmstrip');
+const mediatoggle= document.getElementById('mediatoggle');
+
+let globalMode = 'mesh';   // mesh | image | video
+
+/* ============ BUILD FILMSTRIP ============ */
+SCENES.forEach((scene,i) => {
+  const el = document.createElement('div');
+  el.className = 'slide' + (i===0 ? ' active' : '');
+  el.innerHTML =
+    '<span class="idx">' + String(scene.id).padStart(2,'0') + '</span>' +
+    '<img src="' + scene.thumb + '" alt="' + scene.label + '" ' +
+      'onerror="this.style.visibility=\'hidden\'">' +
+    '<span class="mode">' + scene.mode.toUpperCase() + '</span>';
+  el.addEventListener('click', () => activateScene(i));
+  filmstrip.appendChild(el);
+});
+
+/* ============ ACTIVATE A SCENE ============ */
+function activateScene(i){
+  const scene = SCENES[i];
+  document.querySelectorAll('.slide').forEach((s,idx)=> s.classList.toggle('active', idx===i));
+
+  if(scene.mode === 'video'){
+    setMode('video');
+    bgVideo.src = scene.src;
+    bgVideo.play().catch(()=>{ /* autoplay may be blocked — mesh fallback remains */ });
+  }else{
+    setMode('image');
+    bgImage.src = scene.src;
+  }
+}
+
+/* ============ MODE SWITCHER ============ */
+function setMode(mode){
+  globalMode = mode;
+  mediatoggle.querySelectorAll('button').forEach(b=> b.classList.toggle('active', b.dataset.mode===mode));
+  stage.classList.remove('playing');
+  if(mode === 'mesh'){
+    stage.classList.remove('playing');           // mesh visible
+    bgImage.style.opacity = 0;
+    bgVideo.style.opacity = 0;
+  }else if(mode === 'image'){
+    stage.classList.add('playing');
+    bgImage.style.opacity = 1;
+    bgVideo.style.opacity = 0;
+  }else if(mode === 'video'){
+    stage.classList.add('playing');
+    bgImage.style.opacity = 0;
+    bgVideo.style.opacity = 1;
+  }
+}
+
+mediatoggle.addEventListener('click', (e)=>{
+  const b = e.target.closest('button');
+  if(!b) return;
+  const m = b.dataset.mode;
+  if(m === 'mesh'){ setMode('mesh'); }
+  else if(m === 'image'){ setMode('image'); if(!bgImage.src) bgImage.src = SCENES[0].src; }
+  else if(m === 'video'){ setMode('video'); if(!bgVideo.src) bgVideo.src = SCENES[5].src; bgVideo.play().catch(()=>{}); }
+});
+
+/* ============ GRACEFUL MEDIA FAILURE ============ */
+bgImage.addEventListener('error', ()=>{ setMode('mesh'); });
+bgVideo.addEventListener('error', ()=>{ setMode('mesh'); });
+
+/* ============ ELAPSED TIMECODE ============ */
+const t0 = Date.now();
+function tick(){
+  const s = Math.floor((Date.now()-t0)/1000);
+  const hh = String(Math.floor(s/3600)).padStart(2,'0');
+  const mm = String(Math.floor((s%3600)/60)).padStart(2,'0');
+  const ss = String(s%60).padStart(2,'0');
+  document.getElementById('timecode').textContent = hh+':'+mm+':'+ss;
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);
+
+/* ============ SUBTLE PARALLAX ON POINTER (desktop) ============ */
+window.addEventListener('pointermove', (e)=>{
+  const x = (e.clientX / window.innerWidth - .5);
+  const y = (e.clientY / window.innerHeight - .5);
+  const layer = (globalMode==='image') ? bgImage : (globalMode==='video' ? bgVideo : null);
+  if(layer) layer.style.transform = 'scale(1.06) translate3d(' + (x*10) + 'px,' + (y*10) + 'px,0)';
+});
+
+/* ============ INIT: try the first image scene, else mesh ============ */
+setMode('mesh');
+activateScene(0);
+</script>
+</body>
+</html>
