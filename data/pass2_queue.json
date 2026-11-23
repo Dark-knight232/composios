@@ -1,0 +1,517 @@
+{
+  "generated_at": "2026-11-23T14:38:12.207222+00:00",
+  "total_apps": 100,
+  "pass1_records": 103,
+  "pass1_failures": 7,
+  "queue_size": 100,
+  "reasons": {
+    "failure": [
+      "Salesforce",
+      "HubSpot",
+      "Pipedrive",
+      "LiveAgent",
+      "Plain"
+    ],
+    "gated_or_mcp_flag": [
+      "Attio",
+      "DealCloud",
+      "Zoho CRM",
+      "Copper",
+      "Twenty CRM",
+      "Twilio",
+      "Gladly",
+      "Zoho Cliq",
+      "Lark",
+      "Slack",
+      "Pumble",
+      "Discord",
+      "WhatsApp Business",
+      "Telegram",
+      "Vonage",
+      "Meta Ads",
+      "Google Ads",
+      "LinkedIn Ads",
+      "GoHighLevel",
+      "Mailchimp",
+      "Klaviyo",
+      "Pinterest",
+      "systeme.io",
+      "Shopify",
+      "Threads (Meta)",
+      "SendGrid",
+      "WooCommerce",
+      "Salesforce Commerce Cloud",
+      "BigCommerce",
+      "Magento (Adobe Commerce)",
+      "Squarespace",
+      "Gumroad",
+      "Amazon Selling Partner",
+      "Ahrefs",
+      "DataForSEO",
+      "MrScraper",
+      "Firecrawl",
+      "Apify",
+      "Sherlock",
+      "Bright Data",
+      "Aircall",
+      "Vercel",
+      "GitHub",
+      "Clay",
+      "Netlify",
+      "Cloudflare",
+      "Supabase",
+      "Zendesk",
+      "Snowflake",
+      "Neo4j",
+      "Jira",
+      "MongoDB Atlas",
+      "Linear",
+      "Datadog",
+      "Sentry",
+      "Asana",
+      "Airtable",
+      "ClickUp",
+      "Monday.com",
+      "SE Ranking",
+      "QuickBooks Online",
+      "Coda",
+      "QuickBooks",
+      "Xero",
+      "Ramp",
+      "Brex",
+      "PitchBook",
+      "Pylon",
+      "NotebookLM",
+      "Otter AI",
+      "Help Scout",
+      "Fathom",
+      "Lark (Larksuite)",
+      "Consensus",
+      "Reducto",
+      "Devin",
+      "Gorgias",
+      "Smartsheet",
+      "Mermaid CLI",
+      "Harvest",
+      "higgsfield",
+      "Stripe",
+      "Twenty",
+      "Grain",
+      "Plaid",
+      "Binance",
+      "Freshdesk",
+      "Intercom",
+      "YouTube Transcript"
+    ],
+    "low_confidence": [
+      "Close",
+      "Podio",
+      "Notion",
+      "Front",
+      "fanbasis",
+      "iPayX"
+    ]
+  },
+  "queue": [
+    {
+      "app_name": "Ahrefs",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Aircall",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Airtable",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Amazon Selling Partner",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Apify",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Asana",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Attio",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "BigCommerce",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Binance",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Brex",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Bright Data",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Clay",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "ClickUp",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Close",
+      "reason": "low_confidence"
+    },
+    {
+      "app_name": "Cloudflare",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Coda",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Consensus",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Copper",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "DataForSEO",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Datadog",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "DealCloud",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Devin",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Discord",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Fathom",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Firecrawl",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Freshdesk",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Front",
+      "reason": "low_confidence"
+    },
+    {
+      "app_name": "GitHub",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Gladly",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "GoHighLevel",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Google Ads",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Gorgias",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Grain",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Gumroad",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Harvest",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Help Scout",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "HubSpot",
+      "reason": "failure"
+    },
+    {
+      "app_name": "Intercom",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Jira",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Klaviyo",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Lark",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Lark (Larksuite)",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Linear",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "LinkedIn Ads",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "LiveAgent",
+      "reason": "failure"
+    },
+    {
+      "app_name": "Magento (Adobe Commerce)",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Mailchimp",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Mermaid CLI",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Meta Ads",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Monday.com",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "MongoDB Atlas",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "MrScraper",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Neo4j",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Netlify",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "NotebookLM",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Notion",
+      "reason": "low_confidence"
+    },
+    {
+      "app_name": "Otter AI",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Pinterest",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Pipedrive",
+      "reason": "failure"
+    },
+    {
+      "app_name": "PitchBook",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Plaid",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Plain",
+      "reason": "failure"
+    },
+    {
+      "app_name": "Podio",
+      "reason": "low_confidence"
+    },
+    {
+      "app_name": "Pumble",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Pylon",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "QuickBooks",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "QuickBooks Online",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Ramp",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Reducto",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "SE Ranking",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Salesforce",
+      "reason": "failure"
+    },
+    {
+      "app_name": "Salesforce Commerce Cloud",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "SendGrid",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Sentry",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Sherlock",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Shopify",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Slack",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Smartsheet",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Snowflake",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Squarespace",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Stripe",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Supabase",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Telegram",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Threads (Meta)",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Twenty",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Twenty CRM",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Twilio",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Vercel",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Vonage",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "WhatsApp Business",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "WooCommerce",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Xero",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "YouTube Transcript",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Zendesk",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Zoho CRM",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "Zoho Cliq",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "fanbasis",
+      "reason": "low_confidence"
+    },
+    {
+      "app_name": "higgsfield",
+      "reason": "gated_or_mcp_flag"
+    },
+    {
+      "app_name": "iPayX",
+      "reason": "low_confidence"
+    },
+    {
+      "app_name": "systeme.io",
+      "reason": "gated_or_mcp_flag"
+    }
+  ]
+}

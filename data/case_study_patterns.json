@@ -1,126 +1,323 @@
 {
+  "generated_at": "2026-11-23T14:51:09.551583+00:00",
+  "total_apps": 100,
   "headline_takeaways": [
-    "58% (58/100) apps are Buildable_Today; 12% (12/100) are Blocked by sales/partner gating",
-    "OAuth2 dominates at 33% of auth methods; API keys remain common for simpler integrations",
-    "37% have Official MCPs; Developer/Infra & Productivity categories lead with 80%+ official coverage",
-    "Self-serve categories (Developer, Productivity, Communications) are fast wins; Finance/Marketing/CRM require partnership outreach"
+    "68.0% of apps (68/100) are Buildable_Today; 9.0% are Blocked (9) and 23.0% need a workaround (23).",
+    "OAuth2 is the dominant auth method (71 apps, 71.0%), followed by API Key (65 apps).",
+    "Only 43.0% (43) have an Official MCP; 25.0% (25) rely on community MCPs \u2014 the rest (32) need one built from scratch.",
+    "Easy-win outreach categories (majority Buildable_Today): Support & Ticketing, Support & Helpdesk, Communications & Messaging, Productivity & Docs, DevTools & Infra, E-Commerce & ERP, Data, SEO & Scraping, Data & Analytics, Developer, Infra & Data platforms, Productivity & Project Management, Finance & Payments, AI, Research & Media-native, Other",
+    "11 apps are partner/sales-gated \u2014 prioritize these for BD outreach rather than self-serve onboarding."
   ],
-  "auth_distribution": {
-    "OAuth2": 68,
-    "API_Key": 66,
-    "Bearer_Token": 60,
-    "Basic_Auth": 4,
-    "Bot_Token": 1,
-    "JWT_Service_Account": 3,
-    "LWA": 1,
-    "None_Public": 2,
-    "Application_Key": 1
-  },
-  "api_surface_distribution": {
-    "REST": 97,
-    "GraphQL": 11,
-    "Webhooks": 77,
-    "SDK_Only": 7,
-    "gRPC": 3,
-    "None": 2
-  },
-  "mcp_distribution": {
-    "Official_MCP": 37,
-    "None_Found": 52,
-    "Community_MCP": 11
-  },
-  "access_model_distribution": {
-    "Partner_Or_Sales_Gated": 12,
-    "Self_Serve_Paid_Or_Trial": 46,
-    "Self_Serve_Free": 42
-  },
-  "buildability_breakdown": {
-    "Buildable_Today": 58,
-    "Buildable_With_Workaround": 30,
-    "Blocked": 12
-  },
-  "category_matrix": {
-    "CRM & Sales": {
-      "total": 10,
-      "self_serve": 8,
-      "gated": 2,
-      "buildable_today": 4,
-      "buildable_workaround": 4,
-      "blocked": 2
+  "auth_methods_distribution": {
+    "counts": {
+      "OAuth2": 71,
+      "API_Key": 65,
+      "Bearer_Token": 50,
+      "Basic_Auth": 8,
+      "None_Public": 2,
+      "JWT_Service_Account": 2,
+      "Unknown": 1,
+      "Custom_Header": 1
     },
-    "Support & Helpdesk": {
-      "total": 10,
-      "self_serve": 9,
-      "gated": 1,
-      "buildable_today": 6,
-      "buildable_workaround": 3,
-      "blocked": 1
-    },
-    "Communications & Messaging": {
-      "total": 10,
-      "self_serve": 9,
-      "gated": 1,
-      "buildable_today": 6,
-      "buildable_workaround": 3,
-      "blocked": 1
-    },
-    "Marketing, Ads, Email & Social": {
-      "total": 10,
-      "self_serve": 8,
-      "gated": 2,
-      "buildable_today": 3,
-      "buildable_workaround": 5,
-      "blocked": 2
-    },
-    "Ecommerce": {
-      "total": 10,
-      "self_serve": 8,
-      "gated": 2,
-      "buildable_today": 5,
-      "buildable_workaround": 3,
-      "blocked": 2
-    },
-    "Data, SEO & Scraping": {
-      "total": 10,
-      "self_serve": 10,
-      "gated": 0,
-      "buildable_today": 8,
-      "buildable_workaround": 2,
-      "blocked": 0
-    },
-    "Developer, Infra & Data platforms": {
-      "total": 10,
-      "self_serve": 10,
-      "gated": 0,
-      "buildable_today": 8,
-      "buildable_workaround": 2,
-      "blocked": 0
-    },
-    "Productivity & Project Management": {
-      "total": 10,
-      "self_serve": 10,
-      "gated": 0,
-      "buildable_today": 9,
-      "buildable_workaround": 1,
-      "blocked": 0
-    },
-    "Finance & Fintech": {
-      "total": 10,
-      "self_serve": 8,
-      "gated": 2,
-      "buildable_today": 4,
-      "buildable_workaround": 4,
-      "blocked": 2
-    },
-    "AI, Research & Media-native": {
-      "total": 10,
-      "self_serve": 8,
-      "gated": 2,
-      "buildable_today": 5,
-      "buildable_workaround": 3,
-      "blocked": 2
+    "percentages": {
+      "OAuth2": 71.0,
+      "API_Key": 65.0,
+      "Bearer_Token": 50.0,
+      "Basic_Auth": 8.0,
+      "None_Public": 2.0,
+      "JWT_Service_Account": 2.0,
+      "Unknown": 1.0,
+      "Custom_Header": 1.0
     }
   },
+  "api_surface_distribution": {
+    "counts": {
+      "REST": 95,
+      "Webhooks": 62,
+      "GraphQL": 10,
+      "SDK_Only": 6,
+      "gRPC": 3,
+      "None": 3
+    },
+    "percentages": {
+      "REST": 95.0,
+      "Webhooks": 62.0,
+      "GraphQL": 10.0,
+      "SDK_Only": 6.0,
+      "gRPC": 3.0,
+      "None": 3.0
+    }
+  },
+  "endpoint_breadth_distribution": {
+    "counts": {
+      "Broad_50_Plus": 44,
+      "Moderate_15_To_50": 42,
+      "Narrow_Under_15": 11,
+      "None": 3
+    },
+    "percentages": {
+      "Broad_50_Plus": 44.0,
+      "Moderate_15_To_50": 42.0,
+      "Narrow_Under_15": 11.0,
+      "None": 3.0
+    }
+  },
+  "existing_mcp_distribution": {
+    "counts": {
+      "Official_MCP": 43,
+      "None_Found": 32,
+      "Community_MCP": 25
+    },
+    "percentages": {
+      "Official_MCP": 43.0,
+      "None_Found": 32.0,
+      "Community_MCP": 25.0
+    }
+  },
+  "access_model_distribution": {
+    "counts": {
+      "Self_Serve_Free": 47,
+      "Self_Serve_Paid_Or_Trial": 42,
+      "Partner_Or_Sales_Gated": 8,
+      "Admin_Approval_Required": 3
+    },
+    "percentages": {
+      "Self_Serve_Free": 47.0,
+      "Self_Serve_Paid_Or_Trial": 42.0,
+      "Partner_Or_Sales_Gated": 8.0,
+      "Admin_Approval_Required": 3.0
+    }
+  },
+  "buildability_verdict_distribution": {
+    "counts": {
+      "Buildable_Today": 68,
+      "Buildable_With_Workaround": 23,
+      "Blocked": 9
+    },
+    "percentages": {
+      "Buildable_Today": 68.0,
+      "Buildable_With_Workaround": 23.0,
+      "Blocked": 9.0
+    }
+  },
+  "self_serve_vs_gated_matrix": [
+    {
+      "category": "AI, Research & Media-native",
+      "total": 5,
+      "Self_Serve_Free": 2,
+      "Self_Serve_Paid_Or_Trial": 2,
+      "Admin_Approval_Required": 0,
+      "Partner_Or_Sales_Gated": 1,
+      "No_Public_API": 0,
+      "Buildable_Today": 3,
+      "Buildable_With_Workaround": 1,
+      "Blocked": 1
+    },
+    {
+      "category": "CRM & Sales",
+      "total": 11,
+      "Self_Serve_Free": 4,
+      "Self_Serve_Paid_Or_Trial": 5,
+      "Admin_Approval_Required": 1,
+      "Partner_Or_Sales_Gated": 1,
+      "No_Public_API": 0,
+      "Buildable_Today": 6,
+      "Buildable_With_Workaround": 4,
+      "Blocked": 1
+    },
+    {
+      "category": "Communications & Messaging",
+      "total": 6,
+      "Self_Serve_Free": 4,
+      "Self_Serve_Paid_Or_Trial": 2,
+      "Admin_Approval_Required": 0,
+      "Partner_Or_Sales_Gated": 0,
+      "No_Public_API": 0,
+      "Buildable_Today": 4,
+      "Buildable_With_Workaround": 2,
+      "Blocked": 0
+    },
+    {
+      "category": "Data & Analytics",
+      "total": 4,
+      "Self_Serve_Free": 1,
+      "Self_Serve_Paid_Or_Trial": 3,
+      "Admin_Approval_Required": 0,
+      "Partner_Or_Sales_Gated": 0,
+      "No_Public_API": 0,
+      "Buildable_Today": 4,
+      "Buildable_With_Workaround": 0,
+      "Blocked": 0
+    },
+    {
+      "category": "Data, SEO & Scraping",
+      "total": 6,
+      "Self_Serve_Free": 2,
+      "Self_Serve_Paid_Or_Trial": 4,
+      "Admin_Approval_Required": 0,
+      "Partner_Or_Sales_Gated": 0,
+      "No_Public_API": 0,
+      "Buildable_Today": 4,
+      "Buildable_With_Workaround": 2,
+      "Blocked": 0
+    },
+    {
+      "category": "DevTools & Infra",
+      "total": 6,
+      "Self_Serve_Free": 2,
+      "Self_Serve_Paid_Or_Trial": 4,
+      "Admin_Approval_Required": 0,
+      "Partner_Or_Sales_Gated": 0,
+      "No_Public_API": 0,
+      "Buildable_Today": 6,
+      "Buildable_With_Workaround": 0,
+      "Blocked": 0
+    },
+    {
+      "category": "Developer, Infra & Data platforms",
+      "total": 6,
+      "Self_Serve_Free": 4,
+      "Self_Serve_Paid_Or_Trial": 2,
+      "Admin_Approval_Required": 0,
+      "Partner_Or_Sales_Gated": 0,
+      "No_Public_API": 0,
+      "Buildable_Today": 4,
+      "Buildable_With_Workaround": 2,
+      "Blocked": 0
+    },
+    {
+      "category": "E-Commerce & ERP",
+      "total": 4,
+      "Self_Serve_Free": 4,
+      "Self_Serve_Paid_Or_Trial": 0,
+      "Admin_Approval_Required": 0,
+      "Partner_Or_Sales_Gated": 0,
+      "No_Public_API": 0,
+      "Buildable_Today": 4,
+      "Buildable_With_Workaround": 0,
+      "Blocked": 0
+    },
+    {
+      "category": "Ecommerce",
+      "total": 5,
+      "Self_Serve_Free": 2,
+      "Self_Serve_Paid_Or_Trial": 2,
+      "Admin_Approval_Required": 0,
+      "Partner_Or_Sales_Gated": 1,
+      "No_Public_API": 0,
+      "Buildable_Today": 2,
+      "Buildable_With_Workaround": 2,
+      "Blocked": 1
+    },
+    {
+      "category": "Finance & Fintech",
+      "total": 6,
+      "Self_Serve_Free": 2,
+      "Self_Serve_Paid_Or_Trial": 2,
+      "Admin_Approval_Required": 0,
+      "Partner_Or_Sales_Gated": 2,
+      "No_Public_API": 0,
+      "Buildable_Today": 2,
+      "Buildable_With_Workaround": 2,
+      "Blocked": 2
+    },
+    {
+      "category": "Finance & Payments",
+      "total": 4,
+      "Self_Serve_Free": 1,
+      "Self_Serve_Paid_Or_Trial": 3,
+      "Admin_Approval_Required": 0,
+      "Partner_Or_Sales_Gated": 0,
+      "No_Public_API": 0,
+      "Buildable_Today": 3,
+      "Buildable_With_Workaround": 0,
+      "Blocked": 1
+    },
+    {
+      "category": "Marketing & Social",
+      "total": 5,
+      "Self_Serve_Free": 3,
+      "Self_Serve_Paid_Or_Trial": 1,
+      "Admin_Approval_Required": 1,
+      "Partner_Or_Sales_Gated": 0,
+      "No_Public_API": 0,
+      "Buildable_Today": 2,
+      "Buildable_With_Workaround": 2,
+      "Blocked": 1
+    },
+    {
+      "category": "Marketing, Ads, Email & Social",
+      "total": 8,
+      "Self_Serve_Free": 5,
+      "Self_Serve_Paid_Or_Trial": 1,
+      "Admin_Approval_Required": 0,
+      "Partner_Or_Sales_Gated": 2,
+      "No_Public_API": 0,
+      "Buildable_Today": 3,
+      "Buildable_With_Workaround": 3,
+      "Blocked": 2
+    },
+    {
+      "category": "Other",
+      "total": 1,
+      "Self_Serve_Free": 0,
+      "Self_Serve_Paid_Or_Trial": 1,
+      "Admin_Approval_Required": 0,
+      "Partner_Or_Sales_Gated": 0,
+      "No_Public_API": 0,
+      "Buildable_Today": 1,
+      "Buildable_With_Workaround": 0,
+      "Blocked": 0
+    },
+    {
+      "category": "Productivity & Docs",
+      "total": 7,
+      "Self_Serve_Free": 7,
+      "Self_Serve_Paid_Or_Trial": 0,
+      "Admin_Approval_Required": 0,
+      "Partner_Or_Sales_Gated": 0,
+      "No_Public_API": 0,
+      "Buildable_Today": 7,
+      "Buildable_With_Workaround": 0,
+      "Blocked": 0
+    },
+    {
+      "category": "Productivity & Project Management",
+      "total": 6,
+      "Self_Serve_Free": 3,
+      "Self_Serve_Paid_Or_Trial": 3,
+      "Admin_Approval_Required": 0,
+      "Partner_Or_Sales_Gated": 0,
+      "No_Public_API": 0,
+      "Buildable_Today": 5,
+      "Buildable_With_Workaround": 1,
+      "Blocked": 0
+    },
+    {
+      "category": "Support & Helpdesk",
+      "total": 6,
+      "Self_Serve_Free": 1,
+      "Self_Serve_Paid_Or_Trial": 5,
+      "Admin_Approval_Required": 0,
+      "Partner_Or_Sales_Gated": 0,
+      "No_Public_API": 0,
+      "Buildable_Today": 4,
+      "Buildable_With_Workaround": 2,
+      "Blocked": 0
+    },
+    {
+      "category": "Support & Ticketing",
+      "total": 4,
+      "Self_Serve_Free": 0,
+      "Self_Serve_Paid_Or_Trial": 2,
+      "Admin_Approval_Required": 1,
+      "Partner_Or_Sales_Gated": 1,
+      "No_Public_API": 0,
+      "Buildable_Today": 4,
+      "Buildable_With_Workaround": 0,
+      "Blocked": 0
+    }
+  ],
   "top_blockers": [
     {
       "blocker": "Partner review and contract required",
@@ -135,19 +332,11 @@
       "count": 1
     },
     {
-      "blocker": "Complex OAuth flow; rate limits",
+      "blocker": "OAuth application registration requires contacting copper",
       "count": 1
     },
     {
-      "blocker": "Google OAuth only; paid required",
-      "count": 1
-    },
-    {
-      "blocker": "Sales-gated; no public docs",
-      "count": 1
-    },
-    {
-      "blocker": "API key auth only on lower tiers",
+      "blocker": "Requires admin role for API key generation",
       "count": 1
     },
     {
@@ -159,68 +348,389 @@
       "count": 1
     },
     {
-      "blocker": "Sales-gated; no public API access",
+      "blocker": "Complex auth; Chinese data residency concerns",
+      "count": 1
+    },
+    {
+      "blocker": "Meta Tech Provider approval required for WhatsApp Business API access",
+      "count": 1
+    },
+    {
+      "blocker": "Paid only; voice-focused API",
+      "count": 1
+    },
+    {
+      "blocker": "Developer token approval needed",
+      "count": 1
+    },
+    {
+      "blocker": "App review for marketing permissions",
+      "count": 1
+    },
+    {
+      "blocker": "Partner program; no self-serve API",
+      "count": 1
+    },
+    {
+      "blocker": "Contact-based pricing; API key preferred",
+      "count": 1
+    },
+    {
+      "blocker": "OAuth Dynamic Client Registration flow fails for API-key-authenticated MCP server",
+      "count": 1
+    },
+    {
+      "blocker": "Very limited API access",
+      "count": 1
+    },
+    {
+      "blocker": "Partner certification; no sandbox access",
+      "count": 1
+    },
+    {
+      "blocker": "Complex setup; Adobe ecosystem",
+      "count": 1
+    },
+    {
+      "blocker": "Limited API; commerce tier required",
+      "count": 1
+    },
+    {
+      "blocker": "Lack of public API documentation and auth specifications.",
+      "count": 1
+    },
+    {
+      "blocker": "High-tier only; expensive",
+      "count": 1
+    },
+    {
+      "blocker": "No official API; CLI only",
+      "count": 1
+    },
+    {
+      "blocker": "Graph-specific; Aura cloud simplified",
+      "count": 1
+    },
+    {
+      "blocker": "Enterprise pricing; complex auth",
+      "count": 1
+    },
+    {
+      "blocker": "Paid plans; enterprise focus",
+      "count": 1
+    },
+    {
+      "blocker": "Production requires partnership",
+      "count": 1
+    },
+    {
+      "blocker": "Japan-specific; partnership only",
+      "count": 1
+    },
+    {
+      "blocker": "Lack of iPayX-specific API documentation for MCP integration",
+      "count": 1
+    },
+    {
+      "blocker": "Customer-gated; no public sandbox",
+      "count": 1
+    },
+    {
+      "blocker": "Enterprise sales; $20k+/year",
+      "count": 1
+    },
+    {
+      "blocker": "No public API; enterprise only",
+      "count": 1
+    },
+    {
+      "blocker": "CLI tool; no REST API",
       "count": 1
     }
   ],
-  "accuracy_lift": {
-    "pass1_accuracy": 0.72,
-    "pass2_accuracy": 0.87,
-    "lift": 0.15,
-    "sample_size": 18,
-    "hits": [
-      {
-        "app": "Stripe",
-        "field": "auth_methods",
-        "note": "Correctly identified OAuth2 + API key + Bearer"
-      },
-      {
-        "app": "Linear",
-        "field": "existing_mcp",
-        "note": "Official MCP confirmed via GitHub"
-      },
-      {
-        "app": "Shopify",
-        "field": "buildability_verdict",
-        "note": "Dev stores + official MCP = Buildable_Today"
-      },
-      {
-        "app": "GitHub",
-        "field": "api_surface",
-        "note": "REST + GraphQL + Webhooks correctly captured"
-      },
-      {
-        "app": "Notion",
-        "field": "access_model",
-        "note": "Self_Serve_Free with generous tier"
-      }
-    ],
-    "misses": [
-      {
-        "app": "Plaid",
-        "field": "access_model",
-        "note": "Pass 1 said Self_Serve_Free; Pass 2 found production requires partnership"
-      },
-      {
-        "app": "Salesforce",
-        "field": "buildability_verdict",
-        "note": "Pass 1 said Buildable_With_Workaround; actually Blocked (partner cert required)"
-      },
-      {
-        "app": "WhatsApp Business",
-        "field": "access_model",
-        "note": "Pass 1 missed Meta Business Verification requirement"
-      },
-      {
-        "app": "DealCloud",
-        "field": "primary_blocker",
-        "note": "Pass 1 generic blocker; Pass 2 identified exact partnership model"
-      },
-      {
-        "app": "NotebookLM",
-        "field": "api_surface",
-        "note": "Pass 1 guessed REST; actually no public API"
-      }
-    ]
+  "outreach_targets": [
+    {
+      "app_name": "LinkedIn Ads",
+      "category": "Marketing, Ads, Email & Social",
+      "access_model": "Partner_Or_Sales_Gated",
+      "buildability_verdict": "Blocked",
+      "primary_blocker": "Partner program; no self-serve API",
+      "priority": "High"
+    },
+    {
+      "app_name": "NotebookLM",
+      "category": "AI, Research & Media-native",
+      "access_model": "Partner_Or_Sales_Gated",
+      "buildability_verdict": "Blocked",
+      "primary_blocker": "No public API; enterprise only",
+      "priority": "High"
+    },
+    {
+      "app_name": "Paygent Connect",
+      "category": "Finance & Fintech",
+      "access_model": "Partner_Or_Sales_Gated",
+      "buildability_verdict": "Blocked",
+      "primary_blocker": "Japan-specific; partnership only",
+      "priority": "High"
+    },
+    {
+      "app_name": "PitchBook",
+      "category": "Finance & Fintech",
+      "access_model": "Partner_Or_Sales_Gated",
+      "buildability_verdict": "Blocked",
+      "primary_blocker": "Enterprise sales; $20k+/year",
+      "priority": "High"
+    },
+    {
+      "app_name": "Salesforce",
+      "category": "CRM & Sales",
+      "access_model": "Partner_Or_Sales_Gated",
+      "buildability_verdict": "Blocked",
+      "primary_blocker": "Partner review and contract required",
+      "priority": "High"
+    },
+    {
+      "app_name": "Salesforce Commerce Cloud",
+      "category": "Ecommerce",
+      "access_model": "Partner_Or_Sales_Gated",
+      "buildability_verdict": "Blocked",
+      "primary_blocker": "Partner certification; no sandbox access",
+      "priority": "High"
+    },
+    {
+      "app_name": "Threads (Meta)",
+      "category": "Marketing, Ads, Email & Social",
+      "access_model": "Partner_Or_Sales_Gated",
+      "buildability_verdict": "Blocked",
+      "primary_blocker": "Very limited API access",
+      "priority": "High"
+    },
+    {
+      "app_name": "fanbasis",
+      "category": "Marketing & Social",
+      "access_model": "Self_Serve_Free",
+      "buildability_verdict": "Blocked",
+      "primary_blocker": "Lack of public API documentation and auth specifications.",
+      "priority": "High"
+    },
+    {
+      "app_name": "iPayX",
+      "category": "Finance & Payments",
+      "access_model": "Self_Serve_Paid_Or_Trial",
+      "buildability_verdict": "Blocked",
+      "primary_blocker": "Lack of iPayX-specific API documentation for MCP integration",
+      "priority": "High"
+    },
+    {
+      "app_name": "Ahrefs",
+      "category": "Data, SEO & Scraping",
+      "access_model": "Self_Serve_Paid_Or_Trial",
+      "buildability_verdict": "Buildable_With_Workaround",
+      "primary_blocker": "High-tier only; expensive",
+      "priority": "Medium"
+    },
+    {
+      "app_name": "Aircall",
+      "category": "Communications & Messaging",
+      "access_model": "Self_Serve_Paid_Or_Trial",
+      "buildability_verdict": "Buildable_With_Workaround",
+      "primary_blocker": "Paid only; voice-focused API",
+      "priority": "Medium"
+    },
+    {
+      "app_name": "Copper",
+      "category": "CRM & Sales",
+      "access_model": "Self_Serve_Paid_Or_Trial",
+      "buildability_verdict": "Buildable_With_Workaround",
+      "primary_blocker": "OAuth application registration requires contacting copper",
+      "priority": "Medium"
+    },
+    {
+      "app_name": "DealCloud",
+      "category": "CRM & Sales",
+      "access_model": "Admin_Approval_Required",
+      "buildability_verdict": "Buildable_With_Workaround",
+      "primary_blocker": "Requires admin role for API key generation",
+      "priority": "Medium"
+    },
+    {
+      "app_name": "Gladly",
+      "category": "Support & Ticketing",
+      "access_model": "Admin_Approval_Required",
+      "buildability_verdict": "Buildable_Today",
+      "primary_blocker": null,
+      "priority": "Medium"
+    },
+    {
+      "app_name": "Google Ads",
+      "category": "Marketing, Ads, Email & Social",
+      "access_model": "Self_Serve_Free",
+      "buildability_verdict": "Buildable_With_Workaround",
+      "primary_blocker": "Developer token approval needed",
+      "priority": "Medium"
+    },
+    {
+      "app_name": "Gorgias",
+      "category": "Support & Ticketing",
+      "access_model": "Partner_Or_Sales_Gated",
+      "buildability_verdict": "Buildable_Today",
+      "primary_blocker": null,
+      "priority": "Medium"
+    },
+    {
+      "app_name": "Help Scout",
+      "category": "Support & Helpdesk",
+      "access_model": "Self_Serve_Paid_Or_Trial",
+      "buildability_verdict": "Buildable_With_Workaround",
+      "primary_blocker": "API key only on some plans",
+      "priority": "Medium"
+    },
+    {
+      "app_name": "Klaviyo",
+      "category": "Marketing, Ads, Email & Social",
+      "access_model": "Self_Serve_Paid_Or_Trial",
+      "buildability_verdict": "Buildable_With_Workaround",
+      "primary_blocker": "Contact-based pricing; API key preferred",
+      "priority": "Medium"
+    },
+    {
+      "app_name": "Lark (Larksuite)",
+      "category": "Communications & Messaging",
+      "access_model": "Self_Serve_Paid_Or_Trial",
+      "buildability_verdict": "Buildable_With_Workaround",
+      "primary_blocker": "Complex auth; Chinese data residency concerns",
+      "priority": "Medium"
+    },
+    {
+      "app_name": "Magento (Adobe Commerce)",
+      "category": "Ecommerce",
+      "access_model": "Self_Serve_Paid_Or_Trial",
+      "buildability_verdict": "Buildable_With_Workaround",
+      "primary_blocker": "Complex setup; Adobe ecosystem",
+      "priority": "Medium"
+    },
+    {
+      "app_name": "Mermaid CLI",
+      "category": "AI, Research & Media-native",
+      "access_model": "Self_Serve_Free",
+      "buildability_verdict": "Buildable_With_Workaround",
+      "primary_blocker": "CLI tool; no REST API",
+      "priority": "Medium"
+    },
+    {
+      "app_name": "Meta Ads",
+      "category": "Marketing, Ads, Email & Social",
+      "access_model": "Self_Serve_Free",
+      "buildability_verdict": "Buildable_With_Workaround",
+      "primary_blocker": "App review for marketing permissions",
+      "priority": "Medium"
+    },
+    {
+      "app_name": "Neo4j",
+      "category": "Developer, Infra & Data platforms",
+      "access_model": "Self_Serve_Paid_Or_Trial",
+      "buildability_verdict": "Buildable_With_Workaround",
+      "primary_blocker": "Graph-specific; Aura cloud simplified",
+      "priority": "Medium"
+    },
+    {
+      "app_name": "Pipedrive",
+      "category": "CRM & Sales",
+      "access_model": "Self_Serve_Paid_Or_Trial",
+      "buildability_verdict": "Buildable_With_Workaround",
+      "primary_blocker": "API requires paid subscription",
+      "priority": "Medium"
+    },
+    {
+      "app_name": "Plaid",
+      "category": "Finance & Fintech",
+      "access_model": "Self_Serve_Free",
+      "buildability_verdict": "Buildable_With_Workaround",
+      "primary_blocker": "Production requires partnership",
+      "priority": "Medium"
+    },
+    {
+      "app_name": "Podio",
+      "category": "CRM & Sales",
+      "access_model": "Self_Serve_Paid_Or_Trial",
+      "buildability_verdict": "Buildable_With_Workaround",
+      "primary_blocker": "Limited API surface; older platform",
+      "priority": "Medium"
+    },
+    {
+      "app_name": "Pylon",
+      "category": "Support & Helpdesk",
+      "access_model": "Self_Serve_Paid_Or_Trial",
+      "buildability_verdict": "Buildable_With_Workaround",
+      "primary_blocker": "Narrow API surface; newer platform",
+      "priority": "Medium"
+    },
+    {
+      "app_name": "Ramp",
+      "category": "Finance & Fintech",
+      "access_model": "Self_Serve_Paid_Or_Trial",
+      "buildability_verdict": "Buildable_With_Workaround",
+      "primary_blocker": "Customer-gated; no public sandbox",
+      "priority": "Medium"
+    },
+    {
+      "app_name": "Sherlock",
+      "category": "Data, SEO & Scraping",
+      "access_model": "Self_Serve_Free",
+      "buildability_verdict": "Buildable_With_Workaround",
+      "primary_blocker": "No official API; CLI only",
+      "priority": "Medium"
+    },
+    {
+      "app_name": "Smartsheet",
+      "category": "Productivity & Project Management",
+      "access_model": "Self_Serve_Paid_Or_Trial",
+      "buildability_verdict": "Buildable_With_Workaround",
+      "primary_blocker": "Paid plans; enterprise focus",
+      "priority": "Medium"
+    },
+    {
+      "app_name": "Snowflake",
+      "category": "Developer, Infra & Data platforms",
+      "access_model": "Self_Serve_Paid_Or_Trial",
+      "buildability_verdict": "Buildable_With_Workaround",
+      "primary_blocker": "Enterprise pricing; complex auth",
+      "priority": "Medium"
+    },
+    {
+      "app_name": "Squarespace",
+      "category": "Ecommerce",
+      "access_model": "Self_Serve_Paid_Or_Trial",
+      "buildability_verdict": "Buildable_With_Workaround",
+      "primary_blocker": "Limited API; commerce tier required",
+      "priority": "Medium"
+    },
+    {
+      "app_name": "WhatsApp Business",
+      "category": "Marketing & Social",
+      "access_model": "Admin_Approval_Required",
+      "buildability_verdict": "Buildable_With_Workaround",
+      "primary_blocker": "Meta Tech Provider approval required for WhatsApp Business API access",
+      "priority": "Medium"
+    },
+    {
+      "app_name": "systeme.io",
+      "category": "Marketing & Social",
+      "access_model": "Self_Serve_Free",
+      "buildability_verdict": "Buildable_With_Workaround",
+      "primary_blocker": "OAuth Dynamic Client Registration flow fails for API-key-authenticated MCP server",
+      "priority": "Medium"
+    }
+  ],
+  "agent_vs_human_boundary": {
+    "total_apps": 100,
+    "automated_only": 100,
+    "human_overrides_applied": 0,
+    "systematic_overrides_applied": 0,
+    "low_confidence_rows": 34,
+    "pass1_row_accuracy": null,
+    "pass2_row_accuracy": null,
+    "net_accuracy_lift": null,
+    "notes": "Automation reliably handled URL discovery, auth-method extraction, and broad categorization. Human judgment was essential for gated/paid-tier classification, official-vs-community MCP distinction, and broken-URL detection."
   }
 }

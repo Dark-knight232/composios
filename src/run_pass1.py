@@ -33,12 +33,12 @@ try:
         ToolInputRequiredError,
         build_llm_clients,
         collect_text,
-        execute_tool_async,
         load_records,
         now_iso,
         read_jsonl,
         save_records,
         synthesize_structured,
+        tavily_search_direct,
         top_official_urls,
     )
     from .schema import AppResearchRecord
@@ -52,12 +52,12 @@ except ImportError:  # allows `python src/run_pass1.py`
         ToolInputRequiredError,
         build_llm_clients,
         collect_text,
-        execute_tool_async,
         load_records,
         now_iso,
         read_jsonl,
         save_records,
         synthesize_structured,
+        tavily_search_direct,
         top_official_urls,
     )
     from schema import AppResearchRecord  # type: ignore[no-redef]
@@ -160,6 +160,7 @@ class Pass1Runner:
     async def _amain(self, session: Any, apps: list[str]) -> None:
         openai_client, anthropic_client, nim_client = build_llm_clients()
         sem = asyncio.Semaphore(self.concurrency)
+        self.composio_calls = 0  # no longer using Composio SDK for search
 
         progress = Progress(
             TextColumn("[progress.description]{task.description}"),
@@ -209,21 +210,17 @@ class Pass1Runner:
         query_a = SEARCH_QUERY_A.format(app=app)
         query_b = SEARCH_QUERY_B.format(app=app)
 
-        search_a, search_b = await asyncio.gather(
-            self._execute(session, "TAVILY_SEARCH", {"query": query_a}, stage="search"),
-            self._execute(session, "TAVILY_SEARCH", {"query": query_b}, stage="search"),
-        )
+        search_a = await tavily_search_direct(query_a, max_results=3, include_raw_content=True)
+        search_b = await tavily_search_direct(query_b, max_results=3, include_raw_content=True)
 
         extract_text = ""
         urls = top_official_urls(search_a, app)
         if urls:
-            try:
-                extracted = await self._execute(session, "TAVILY_EXTRACT", {"urls": urls}, stage="extract")
-                extract_text = collect_text(extracted)
-            except ToolExecutionError as exc:
-                self.failures.append(
-                    app=app, stage=f"extract_soft:{exc.stage}", message=str(exc), log_id=exc.log_id
-                )
+            # Use raw_content from search results as extracted text
+            for r in search_a.get("results", []):
+                if r.get("url") in urls:
+                    extract_text = r.get("raw_content") or r.get("content") or ""
+                    break
 
         context = (
             f"SEARCH RESULTS (Query A — developer docs):\n{collect_text(search_a)}\n\n"
@@ -244,10 +241,6 @@ class Pass1Runner:
             )
         except Exception as exc:  # noqa: BLE001
             raise ToolExecutionError(f"schema/LLM synthesis failed: {exc}", stage="schema_parse") from exc
-
-    async def _execute(self, session: Any, tool: str, arguments: dict[str, Any], *, stage: str) -> Any:
-        self.composio_calls += 1
-        return await execute_tool_async(session, tool, arguments, stage=stage)
 
     def _save(self) -> None:
         save_records(self.pass1_out, self.records)

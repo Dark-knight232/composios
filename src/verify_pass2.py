@@ -34,11 +34,12 @@ try:
         TOOLKIT,
         build_llm_clients,
         collect_text,
-        execute_tool_async,
         load_records,
         now_iso,
         save_records,
         synthesize_structured,
+        tavily_search_direct,
+        top_official_urls,
     )
     from .schema import AppResearchRecord
 except ImportError:  # allows `python src/verify_pass2.py`
@@ -48,11 +49,12 @@ except ImportError:  # allows `python src/verify_pass2.py`
         TOOLKIT,
         build_llm_clients,
         collect_text,
-        execute_tool_async,
         load_records,
         now_iso,
         save_records,
         synthesize_structured,
+        tavily_search_direct,
+        top_official_urls,
     )
     from schema import AppResearchRecord  # type: ignore[no-redef]
 
@@ -282,14 +284,10 @@ def _build_context(app: str, pass1: AppResearchRecord | None, checks: list[UrlCh
     return f"PASS 1 RECORD:\n{pass1_json}\n\nLIVE DOC TEXT:\n{docs}"
 
 
-async def _discover_docs(session: Any, app: str) -> list[str]:
-    """Run a Tavily search for official docs if Composio session is available."""
-    if session is None:
-        return []
+async def _discover_docs(app: str) -> list[str]:
+    """Run a Tavily search for official docs using the direct Tavily API."""
     try:
-        result = await execute_tool_async(
-            session, "TAVILY_SEARCH", {"query": f"{app} official API documentation site:dev OR site:developer OR site:docs"}, stage="search"
-        )
+        result = await tavily_search_direct(f"{app} official API documentation site:dev OR site:developer OR site:docs", max_results=3, include_raw_content=False)
         return top_official_urls(result, app, limit=2)
     except Exception:
         return []
@@ -488,7 +486,7 @@ class Pass2Verifier:
                 checks[i] = rendered
 
         if _needs_discovery(evidence, checks):
-            discovered = await _discover_docs(session, app)
+            discovered = await _discover_docs(app)
             for u in discovered:
                 if u not in evidence:
                     c = await fetch_http(u)
