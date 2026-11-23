@@ -32,6 +32,14 @@
       "dest": "/entry.html"
     },
     {
+      "src": "/",
+      "dest": "/entry.html"
+    },
+    {
+      "src": "/index.html",
+      "dest": "/index.html"
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.html"
     }
