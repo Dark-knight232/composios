@@ -6,8 +6,8 @@
 <title>Composio 100 — Entry</title>
 <style>
 :root{
-  --bg:#0b0d12;
-  --bg-elev:#11141a;
+  --bg:#000000;
+  --bg-elev:#000000;
   --fg:#00d4aa;
   --muted:#8b92a0;
   --accent:#00d4aa;
@@ -41,12 +41,7 @@ body{cursor:default}
 
 /* Animated fallback mesh — looks intentional, never broken */
 #bg-mesh{
-  background:
-    radial-gradient(60% 70% at 18% 22%, rgba(0,212,170,.12) 0%, transparent 60%),
-    radial-gradient(55% 65% at 82% 12%, rgba(19,26,46,.6) 0%, transparent 62%),
-    radial-gradient(70% 80% at 70% 88%, rgba(26,18,48,.5) 0%, transparent 60%),
-    radial-gradient(40% 50% at 30% 80%, rgba(0,56,58,.15) 0%, transparent 65%),
-    linear-gradient(135deg,var(--bg) 0%,var(--bg-elev) 100%);
+  background:#000000;
   animation:meshDrift 24s ease-in-out infinite alternate;
 }
 @keyframes meshDrift{
