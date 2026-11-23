@@ -206,7 +206,6 @@ body{cursor:default}
           <span>100 APPS · PASS 1 + 2 + AUDIT</span>
           <span class="mediatoggle" id="mediatoggle">
             <button data-mode="mesh" class="active">MESH</button>
-            <button data-mode="image">IMAGE</button>
             <button data-mode="video">VIDEO</button>
           </span>
         </div>
@@ -224,21 +223,15 @@ body{cursor:default}
 <script>
 /* ============ SCENE DEFINITIONS (placeholder asset slots) ============ */
 const SCENES = [
-  { id:1, label:'Dev Tools',  mode:'image', thumb:'./assets/entry-thumb-1.jpg', src:'./assets/entry-thumb-1.jpg' },
-  { id:2, label:'Fintech',    mode:'image', thumb:'./assets/entry-thumb-2.jpg', src:'./assets/entry-thumb-2.jpg' },
-  { id:3, label:'CRM',        mode:'image', thumb:'./assets/entry-thumb-3.jpg', src:'./assets/entry-thumb-3.jpg' },
-  { id:4, label:'Marketing',  mode:'image', thumb:'./assets/entry-thumb-4.jpg', src:'./assets/entry-thumb-4.jpg' },
-  { id:5, label:'AI / Media', mode:'image', thumb:'./assets/entry-thumb-5.jpg', src:'./assets/entry-thumb-5.jpg' },
-  { id:6, label:'Video Reel', mode:'video', thumb:'./assets/entry-thumb-1.jpg', src:'./assets/entry-bg.mp4' }
+  { id:1, label:'Video Reel', mode:'video', thumb:'./assets/entry-thumb-1.jpg', src:'./assets/entry-bg.mp4' }
 ];
 
 const stage      = document.getElementById('stage');
-const bgImage    = document.getElementById('bg-image');
 const bgVideo    = document.getElementById('bg-video');
 const filmstrip  = document.getElementById('filmstrip');
 const mediatoggle= document.getElementById('mediatoggle');
 
-let globalMode = 'mesh';   // mesh | image | video
+let globalMode = 'mesh';   // mesh | video
 
 /* ============ BUILD FILMSTRIP ============ */
 SCENES.forEach((scene,i) => {
@@ -257,14 +250,10 @@ SCENES.forEach((scene,i) => {
 function activateScene(i){
   const scene = SCENES[i];
   document.querySelectorAll('.slide').forEach((s,idx)=> s.classList.toggle('active', idx===i));
-
   if(scene.mode === 'video'){
     setMode('video');
     bgVideo.src = scene.src;
     bgVideo.play().catch(()=>{ /* autoplay may be blocked — mesh fallback remains */ });
-  }else{
-    setMode('image');
-    bgImage.src = scene.src;
   }
 }
 
@@ -274,16 +263,10 @@ function setMode(mode){
   mediatoggle.querySelectorAll('button').forEach(b=> b.classList.toggle('active', b.dataset.mode===mode));
   stage.classList.remove('playing');
   if(mode === 'mesh'){
-    stage.classList.remove('playing');           // mesh visible
-    bgImage.style.opacity = 0;
-    bgVideo.style.opacity = 0;
-  }else if(mode === 'image'){
-    stage.classList.add('playing');
-    bgImage.style.opacity = 1;
+    stage.classList.remove('playing');
     bgVideo.style.opacity = 0;
   }else if(mode === 'video'){
     stage.classList.add('playing');
-    bgImage.style.opacity = 0;
     bgVideo.style.opacity = 1;
   }
 }
@@ -293,12 +276,10 @@ mediatoggle.addEventListener('click', (e)=>{
   if(!b) return;
   const m = b.dataset.mode;
   if(m === 'mesh'){ setMode('mesh'); }
-  else if(m === 'image'){ setMode('image'); if(!bgImage.src) bgImage.src = SCENES[0].src; }
-  else if(m === 'video'){ setMode('video'); if(!bgVideo.src) bgVideo.src = SCENES[5].src; bgVideo.play().catch(()=>{}); }
+  else if(m === 'video'){ setMode('video'); if(!bgVideo.src) bgVideo.src = SCENES[0].src; bgVideo.play().catch(()=>{}); }
 });
 
 /* ============ GRACEFUL MEDIA FAILURE ============ */
-bgImage.addEventListener('error', ()=>{ setMode('mesh'); });
 bgVideo.addEventListener('error', ()=>{ setMode('mesh'); });
 
 /* ============ ELAPSED TIMECODE ============ */
@@ -317,13 +298,11 @@ requestAnimationFrame(tick);
 window.addEventListener('pointermove', (e)=>{
   const x = (e.clientX / window.innerWidth - .5);
   const y = (e.clientY / window.innerHeight - .5);
-  const layer = (globalMode==='image') ? bgImage : (globalMode==='video' ? bgVideo : null);
-  if(layer) layer.style.transform = 'scale(1.06) translate3d(' + (x*10) + 'px,' + (y*10) + 'px,0)';
+  if(globalMode==='video') bgVideo.style.transform = 'scale(1.06) translate3d(' + (x*10) + 'px,' + (y*10) + 'px,0)';
 });
 
-/* ============ INIT: try the first image scene, else mesh ============ */
+/* ============ INIT: mesh only ============ */
 setMode('mesh');
-activateScene(0);
 </script>
 </body>
 </html>
